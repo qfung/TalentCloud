@@ -1,9 +1,17 @@
 /* =============================================================================
 
-  Authored by: Talent Cloud
+    Authored by: Talent Cloud
 
-  This is a sample SASS file.
+    This is a sample SASS file.
 
 ============================================================================= */
 
+/* Webfonts ================================================================= */
+@import "atoms/webfonts";
+
+/* Legacy Files ============================================================= */
+@import "atoms/legacy-slider-buttons";
+@import "atoms/legacy-messaging";
+
+/* Examples ================================================================= */
 @import "organisms/organism-sample-01";
