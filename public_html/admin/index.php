@@ -38,6 +38,24 @@ and open the template in the editor .
                         <form name="registerForm" id="registerForm" novalidate="novalidate" method="post" enctype="application/x-www-form-urlencoded">
                             <div class="center-block three-quarter-width">
                                 <div class="form-group">
+                                    <label for="register_firstname">
+                                        <span>First Name:</span>
+                                        <strong id="register_firstname_error" class="error hidden">
+                                            <span id="register_firstname_error_msg" class="label label-danger"></span>
+                                        </strong>
+                                    </label>
+                                    <input class="form-control form-textbox" id="register_firstname" name="register_firstname" type="text" required=""/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register_lastname">
+                                        <span>Last Name:</span>
+                                        <strong id="register_lastname_error" class="error hidden">
+                                            <span id="register_lastname_error_msg" class="label label-danger"></span>
+                                        </strong>
+                                    </label>
+                                    <input class="form-control form-textbox" id="register_lastname" name="register_firstname" type="text" required=""/>
+                                </div>
+                                <div class="form-group">
                                     <label for="register_email">
                                         <span>Email:</span>
                                         <strong id="register_email_error" class="error hidden">

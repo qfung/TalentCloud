@@ -167,6 +167,10 @@ UserAPI.updateProgress = function () {
  */
 UserAPI.register = function (isManager) {
     var registerForm = document.getElementById("registerForm");
+    /*Added First and Last Name*/
+    var firstname = registerForm.register_firstname.value;
+    var lastname = registerForm.register_lastname.value;
+    /*end First and Last Name*/
     var email = registerForm.register_email.value;
     var email_confirm = registerForm.register_email_confirm.value;
     var password = registerForm.register_password.value;
@@ -175,7 +179,7 @@ UserAPI.register = function (isManager) {
     if (isManager) {
         userrole = "manager";
     }
-    var isValid = FormValidationAPI.validateRegisterForm(email, email_confirm, password, password_confirm);
+    var isValid = FormValidationAPI.validateRegisterForm(firstname, lastname, email, email_confirm, password, password_confirm);
 
     var credentials = {};
     credentials.email = email;
