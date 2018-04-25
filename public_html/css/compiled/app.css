@@ -5911,6 +5911,162 @@ nav {
         float: right;
         margin: 0; } }
 
+/* =============================================================================
+
+    Authored by: Talent Cloud
+
+    User Application - Application Temporary Preview (Evidence)
+
+============================================================================= */
+.applicant-evidence-temp {
+  margin: 4rem 0 0 0; }
+
+.applicant-evidence-temp__explanation-copy {
+  margin: 4rem auto; }
+
+/* Accordions =============================================================== */
+.applicant-evidence-temp__accordion-wrapper {
+  margin-top: 5rem; }
+  @media (min-width: 64em) {
+    .applicant-evidence-temp__accordion-wrapper.active {
+      display: block; } }
+  .applicant-evidence-temp__accordion-wrapper:first-child .applicant-evidence-temp__accordion-trigger {
+    border-top: none !important; }
+
+/* Trigger */
+.applicant-evidence-temp__accordion-trigger {
+  cursor: pointer;
+  border-top: 1px solid #484848; }
+  @media (min-width: 64em) {
+    .applicant-evidence-temp__accordion-trigger {
+      cursor: default;
+      border: none; } }
+  .applicant-evidence-temp__accordion-trigger.active {
+    border-top: none; }
+    .applicant-evidence-temp__accordion-trigger.active .applicant-evidence-temp__accordion-trigger-title {
+      background: #2196f3;
+      color: white; }
+      @media (min-width: 64em) {
+        .applicant-evidence-temp__accordion-trigger.active .applicant-evidence-temp__accordion-trigger-title {
+          background: none;
+          color: #333333; } }
+
+.applicant-evidence-temp__accordion-trigger-title {
+  background: #2196f3;
+  border: none;
+  color: white;
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 3rem;
+  position: relative;
+  text-align: center;
+  text-decoration: underline;
+  width: 100%; }
+  @media (min-width: 64em) {
+    .applicant-evidence-temp__accordion-trigger-title {
+      padding: 3rem;
+      text-align: left;
+      text-decoration: none; } }
+
+/* Content */
+.applicant-evidence-temp__accordion-content {
+  display: block;
+  padding-top: 3rem; }
+  @media (min-width: 64em) {
+    .applicant-evidence-temp__accordion-content {
+      display: block; } }
+  .applicant-evidence-temp__accordion-content.active {
+    display: block; }
+
+/* Content - Required */
+.applicant-evidence-temp__experience-copy {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 0; }
+
+.applicant-evidence-temp__divider {
+  background: #484848;
+  border: none;
+  height: 1px;
+  margin: 3rem 0;
+  width: 100%; }
+
+.applicant-evidence-temp__reference-metadata {
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 2rem 0; }
+
+.applicant-evidence-temp__reference-status {
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 2rem 0; }
+  .applicant-evidence-temp__reference-status i.fa-check-circle {
+    color: #2196f3; }
+  .applicant-evidence-temp__reference-status i.fa-exclamation-triangle {
+    color: #ffd200; }
+
+.applicant-evidence-temp__reference-copy {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 2rem;
+  margin-bottom: 0; }
+
+.applicant-evidence-temp__reference-null {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 2rem;
+  margin-bottom: 0; }
+
+.applicant-evidence-temp__evidence-wrapper {
+  padding: 0 0 3rem; }
+
+.applicant-evidence-temp__evidence-metadata {
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 2rem 0; }
+
+.applicant-evidence-temp__evidence-status {
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 2rem 0; }
+  .applicant-evidence-temp__evidence-status i.fa-check-circle {
+    color: #2196f3; }
+  .applicant-evidence-temp__evidence-status i.fa-exclamation-triangle {
+    color: #ffd200; }
+
+.applicant-evidence-temp__evidence-copy {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 2rem 0; }
+
+.applicant-evidence-temp__evidence-null {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 2rem;
+  margin-bottom: 0; }
+
+.applicant-evidence-temp__section-title {
+  font-size: 22px;
+  margin: 0 0 2rem;
+  text-align: center; }
+  @media (min-width: 64em) {
+    .applicant-evidence-temp__section-title {
+      text-align: left; } }
+  .applicant-evidence-temp__section-title i {
+    color: #2196f3; }
+  .applicant-evidence-temp__section-title a {
+    display: block;
+    font-size: 16px;
+    margin: 1rem 0 0 0;
+    text-decoration: underline;
+    vertical-align: middle; }
+    @media (min-width: 64em) {
+      .applicant-evidence-temp__section-title a {
+        float: right;
+        margin: 0; } }
+
 /* ALL PROFILES (COMMON TO APPLICANT, ADMIN, MANAGER) */
 .profileBannerFiller {
   height: 18em; }

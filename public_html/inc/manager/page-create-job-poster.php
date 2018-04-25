@@ -334,6 +334,8 @@
                                 </div>
                             </div>
 
+                            <?php include "partial-temp-evidence.php"; ?>
+
                         </div>
 
                     </div>
