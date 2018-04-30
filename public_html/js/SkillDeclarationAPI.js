@@ -25,7 +25,7 @@ SkillDeclarationAPI.SkillDeclaration = function (
      * @return {Boolean}
      */
     this.isValid = function () {
-        return (this.skill_level_id != "" && this.experience_level_id != "" && this.description != "");
+        return (this.skill_level_id != false && this.experience_level_id != false && this.description != false);
     };
 };
 
@@ -62,6 +62,9 @@ SkillDeclarationAPI.populateApplicationUiSkillDeclarations = function (skillDecl
             if (description) {
                 description.value = declaration.description;
             }
+            
+            //Run status change handler, because declartion may now be complete
+            SkillDeclarationAPI.onStatusChange(declaration.criteria_id);
         }
     });
 };
@@ -159,8 +162,12 @@ SkillDeclarationAPI.onStatusChange = function (criteriaId) {
 
     if (skillDeclaration.isValid()) {
         SkillDeclarationAPI.setDeclarationStatus(criteriaId, true);
+        //Un-hide optional fields
+        panel.querySelector(".applicant-evidence__optional-wrapper").classList.add("active");
     } else {
         SkillDeclarationAPI.setDeclarationStatus(criteriaId, false);
+        //Hide optional fields
+        panel.querySelector(".applicant-evidence__optional-wrapper").classList.remove("active");
     }
 };
 
