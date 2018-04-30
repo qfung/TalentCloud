@@ -257,8 +257,10 @@ DataAPI.talentcloudDataloaded = function(responseText,isManager){
     thisContent.updateProfileChooseAltPhotoButton = content.updateProfileChooseAltPhotoButton;
     thisContent.updateProfilePhotoCancelButton = content.updateProfilePhotoCancelButton;
     thisContent.profileBasicInfoEditCancel = content.profileBasicInfoEditCancel;
-    thisContent.updateProfileApplicantProfileFormNameLabelSpan = content.updateProfileApplicantProfileFormNameLabelSpan;
-    thisContent.profileEditName = content.profileEditName;
+    thisContent.updateProfileApplicantProfileFormFirstNameLabelSpan = content.updateProfileApplicantProfileFormFirstNameLabelSpan;
+    thisContent.profileEditFirstName = content.profileEditFirstName;
+    thisContent.updateProfileApplicantProfileFormLastNameLabelSpan = content.updateProfileApplicantProfileFormLastNameLabelSpan;
+    thisContent.profileEditLastName = content.profileEditLastName;
     thisContent.updateProfileApplicantProfileFormTaglineLabelSpan = content.updateProfileApplicantProfileFormTaglineLabelSpan;
     thisContent.profileEditTagline = content.profileEditTagline;
     thisContent.updateProfileApplicantProfileFormTwitterLabelSpan = content.updateProfileApplicantProfileFormTwitterLabelSpan;
@@ -285,21 +287,9 @@ DataAPI.talentcloudDataloaded = function(responseText,isManager){
     thisContent.profileAboutMeEditSave = content.profileAboutMeEditSave;
     thisContent.managerDecisions_tipWhatis = content.managerDecisions_tipWhatis;
     thisContent.managerDecisions_tipSummary = content.managerDecisions_tipSummary;
-    thisContent.accommodationTextStart = content.accommodationTextStart;
-    thisContent.accommodationTextEnd = content.accommodationTextEnd;
-    thisContent.jobPosterKeyTasksLabel = content.jobPosterKeyTasksLabel;
-    thisContent.jobPosterCoreCompetenciesLabel = content.jobPosterCoreCompetenciesLabel;
-    thisContent.jobPosterDevelopingCompetenciesLabel = content.jobPosterDevelopingCompetenciesLabel;
-    thisContent.jobPosterHiringManagerLabel = content.jobPosterHiringManagerLabel;
-    thisContent.jobPosterClearanceLevelLabel = content.jobPosterClearanceLevelLabel;
-    thisContent.jobPosterStartDateLabel = content.jobPosterStartDateLabel;
-    thisContent.jobPosterJobLevelLabel = content.jobPosterJobLevelLabel;
-    thisContent.jobPosterLanguageLabel = content.jobPosterLanguageLabel;
-    thisContent.jobPosterTermLabel = content.jobPosterTermLabel;
     thisContent.save = content.save;
     thisContent.cancel = content.cancel;
     thisContent.editYour = content.editYour;
-
     //if(siteContent){
         TalentCloudAPI.setContent(thisContent,isManager);
     //}
@@ -437,7 +427,6 @@ DataAPI.getDepartments = function(locale){
  * @return {undefined}
  */
 DataAPI.getJobSeekerProfileByUserId = function(user_id, successfulResponseCallback){
-    console.log("getJobSeekerProfileByUserId");
     Utilities.debug?console.log("loading job seekers"):null;
     var jobSeekers_url = DataAPI.baseURL+"/getJobSeekerProfileByUser/"+user_id;
     DataAPI.sendRequest(jobSeekers_url, "GET", {}, null, function(request) {
@@ -823,3 +812,4 @@ DataAPI.deleteSkillDeclaration = function(criteriaId, applicationId, requestCall
     var url = DataAPI.baseURL + "/deleteDeclarationForApplication/" + applicationId + "/forCriteria/" + criteriaId;
     DataAPI.sendRequest(url, 'DELETE', {}, null, requestCallback);
 };
+

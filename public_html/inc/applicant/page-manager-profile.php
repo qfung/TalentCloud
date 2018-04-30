@@ -22,7 +22,7 @@
                 </div>
                 <div id="managerProfileNameWrapper">
                     <div id="managerProfileName" class="profileName">
-                        <span id="managerProfileName"></span>
+                        <span id="managerProfileFirstName"></span> <span id="managerProfileLastName"></span>
                     </div>
                 </div>
                 <div id="managerProfilePositionWrapper" class="profileTagLineContainer">

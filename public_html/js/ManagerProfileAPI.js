@@ -23,7 +23,9 @@ ManagerProfileAPI.ManagerProfile = function(){
     this.low_value_work_requests = null;
     this.work_experience = null;
     this.education = null;
-    this.name = null;
+    
+    this.firstname = null;
+    this.lastname = null;
 };
 
 /**
@@ -62,7 +64,8 @@ ManagerProfileAPI.parseManagerProfileResponse = function(response) {
     profile.work_experience = manager_profile_details.user_manager_profile_work_experience;
     profile.education = manager_profile_details.user_manager_profile_education;
     
-    profile.name = manager_user.name;
+    profile.firstname = manager_user.firstname;
+    profile.lastname = manager_user.lastname;
     
     return profile;
 };
@@ -100,7 +103,8 @@ ManagerProfileAPI.localizeManagerProfile = function() {
 ManagerProfileAPI.populateManagerProfileName = function(response) {
     var user = UserAPI.parseUserResponse(response);
     
-    document.getElementById("managerProfileName").innerHTML = user.name;
+    document.getElementById("managerProfileFirstName").innerHTML = user.firstname;
+    document.getElementById("managerProfileLastName").innerHTML = user.lastname;
 };
 
 ManagerProfileAPI.populateManagerProfile = function(response) {
@@ -112,7 +116,8 @@ ManagerProfileAPI.populateManagerProfile = function(response) {
     var manager_id = document.getElementById("managerProfile_managerProfileId");
     manager_id.value = profile.manager_profile_id;
 
-    document.getElementById("managerProfileName").innerHTML = profile.name;
+    document.getElementById("managerProfileFirstName").innerHTML = profile.firstname;
+    document.getElementById("managerProfileLastName").innerHTML = profile.lastname;
 
     //var last_updated = document.getElementById("profileLastUpdated");
 

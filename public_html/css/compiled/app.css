@@ -5095,13 +5095,8 @@ nav {
       .manager-edit-profile__button-form > .box {
         text-align: right; } }
 
-.stepGroup_createEditProfile a {
-  color: #333; }
-
 .stepGroup_createEditProfile .tab-current {
-  background: #2196f3; }
-
-.stepGroup_createEditProfile .tab-current a {
+  background: #2196f3;
   color: white; }
 
 /* =============================================================================
@@ -6297,11 +6292,13 @@ nav {
   clear: both; }
 
 .createJobPosterDemoAreaEnglish {
+  float: left;
   margin-bottom: 1em;
   margin-top: 1em;
   background-color: #FFF; }
 
 .createJobPosterDemoAreaFrench {
+  float: left;
   background-color: #F8F8F8; }
 
 .createJobPosterDemoArea {
@@ -6326,34 +6323,26 @@ nav {
 
 #jobPosterLocation {
   color: #eee;
-  margin-bottom: .5rem; }
+  float: left; }
 
 #jobPosterId {
   float: right;
   padding-right: 2em;
-  color: #eee;
-  margin-bottom: 1.5rem; }
-
-#jobPosterRemoteWorkHeader {
-  color: #eee;
-  margin-bottom: 1.5rem; }
+  color: #eee; }
 
 #jobPosterDatapointsSection {
-  background-color: #333;
+  background-color: #777;
   color: #FFF;
   padding: 2em; }
 
 #jobPosterButtonWrapper {
   text-align: center;
-  background-color: #B9B9B9; }
+  background-color: #B9B9B9;
+  margin-top: 2em; }
 
 #jobPosterApplyButton {
   margin-top: 2em;
   margin-bottom: 2em; }
-
-.jobPosterDatapoints {
-  margin-bottom: 0;
-  font-size: 2rem; }
 
 .jobPosterSection:nth-child(odd) {
   background: #F8F8F8; }
@@ -6398,17 +6387,6 @@ nav {
   display: inline;
   width: 30%;
   margin-right: 2em; }
-
-.accommodationRequest {
-  text-align: center;
-  margin-top: 2em;
-  margin-bottom: 2em; }
-
-.accommodationRequestText {
-  text-align: left;
-  font-size: 2rem;
-  padding-top: 1em;
-  padding-bottom: 1em; }
 
 /* =============================================================================
 
@@ -6487,7 +6465,7 @@ nav {
       text-align: center; } }
 
 .jobSummarySalaryRange {
-  width: 20rem;
+  width: 15rem;
   text-align: center;
   padding-top: .25rem;
   padding-bottom: .25rem; }
@@ -6499,11 +6477,11 @@ nav {
   padding-bottom: .5rem; }
 
 .jobSummaryTerm_qty {
-  width: 20rem;
+  width: 15rem;
   text-align: center; }
 
 .titleDepartmentWrapper {
-  width: 20rem; }
+  width: 22.5rem; }
   @media screen and (max-width: 800px) {
     .titleDepartmentWrapper {
       text-align: center;
@@ -6533,7 +6511,7 @@ nav {
   display: block;
   margin-right: 2rem;
   margin-left: 2rem;
-  width: 15rem;
+  width: 10rem;
   padding-top: .5rem;
   padding-bottom: .5rem; }
 

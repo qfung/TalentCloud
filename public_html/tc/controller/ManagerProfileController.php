@@ -48,6 +48,9 @@ class ManagerProfileController{
         $user->setUser_id($managerProfile->getUser_id());
         
         $managerUser = UserController::getUserById($user);
+        $managerUser->setIs_confirmed(null);
+        $managerUser->setUser_role(null);
+        
         $profile = ManagerProfileController::getManagerProfile($managerProfile);
         
         $details = ManagerProfileController::getManagerProfileDetails($profile);
