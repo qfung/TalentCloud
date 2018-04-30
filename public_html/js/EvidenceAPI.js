@@ -80,6 +80,28 @@ EvidenceAPI.instantiateApplicationEvidencePanel = function (criteriaId, criteria
         experienceSelector.appendChild(fragment);
     });
 
+    //ADD EVENT HANDLERS
+    
+    //define a function to check skill declaration status
+    function declarationOnChange() {
+        SkillDeclarationAPI.onStatusChange(criteriaId);
+    }
+    //Add handler to experienence inputs
+    var experienceInputs = evidencePanel.querySelectorAll("input[name=experience]");
+    experienceInputs.forEach(item => {
+        item.onclick = declarationOnChange;
+    });
+    //Add handler to expertise inputs
+    var expertiseInputs = evidencePanel.querySelectorAll("input[name=expertise]");
+    expertiseInputs.forEach(item => {
+        item.onclick = declarationOnChange;
+    });
+    //Add handler to Skill Declaration story text
+    var declarationText = evidencePanel.querySelector(".applicant-evidence__skill-declaration-text");
+    declarationText.onchange = declarationOnChange;    
+    
+    
+
     return evidencePanel;
 };
 

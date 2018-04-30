@@ -183,7 +183,7 @@ JobApplicationAPI.populateApplicationWithSavedApplicationContent = function (job
         //Need an up-to-date profile id
         var user = UserAPI.getSessionUserAsJSON();
         DataAPI.getJobSeekerProfileByUserId(user.user_id, function (jobSeekerProfileResponse) {
-            if (jobSeekerProfileResponse) {
+            if (jobSeekerProfileResponse && jobSeekerProfileResponse !== "false") {
                 var jobSeeker = JobSeekerAPI.populateJobSeekerObject(JSON.parse(jobSeekerProfileResponse));
                 var newApplication = new JobApplicationAPI.JobApplication(null, jobPosterId, jobSeeker.id, status, []);
                 DataAPI.createJobApplication(newApplication, function (request) {
