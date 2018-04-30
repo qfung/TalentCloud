@@ -6,7 +6,7 @@
 
 var TalentCloudAPI = {};
 var siteContent;
-TalentCloudAPI.roles = {jobseeker:"jobseeker", manager:"manager", admin:"admin"};
+TalentCloudAPI.roles = {jobseeker:"jobseeker", manager:"manager", admin:"administrator"};
 
 TalentCloudAPI.Content = function(title,helpLearn,languageSelect,applyNow,loginLink,logoutLink,registerLink,homeLink,profileLink,
 jobPostersLink,teamsLink,jobNumber,jobTitle,jobLocation,jobCity,jobProvince,jobApplicantsSoFar,jobUnitsToCloseHours,
@@ -31,6 +31,7 @@ managerProfile_engagement_option0, managerProfile_engagement_option1, managerPro
 managerProfile_acceptLowValueWorkRequests_option0, managerProfile_acceptLowValueWorkRequests_option1, managerProfile_acceptLowValueWorkRequests_option2, managerProfile_acceptLowValueWorkRequests_option3, managerProfile_acceptLowValueWorkRequests_option4,
 managerDecisions_tipWhatis, managerDecisions_tipSummary,
 changeDisplayPic, managerProfile_developmentOpportunities_option0, managerProfile_developmentOpportunities_option1, managerProfile_developmentOpportunities_option2,
+accommodationTextStart, accommodationTextEnd, jobPosterKeyTasksLabel, jobPosterCoreCompetenciesLabel, jobPosterHiringManagerLabel, jobPosterClearanceLevelLabel, jobPosterStartDateLabel, jobPosterJobLevelLabel, jobPosterLanguageLabel, jobPosterTermLabel,
 managerProfile_developmentOpportunities_option3, managerProfile_developmentOpportunities_option4, updateProfilePhotoTitle, updateProfilePhotoDraggableAreaLabel, updateProfilePhotoDraggableAreaErrorSize, updateProfilePhotoDraggableAreaErrorType, updateProfileOrCopy, updateProfileChoosePhotoButtonLabelSpan, updateProfileChoosePhotoButton, updateProfileChooseAltPhotoButtonLabelSpan, updateProfileChooseAltPhotoButton, updateProfilePhotoCancelButton, updateProfileApplicantProfileFormFirstNameLabelSpan, profileEditFirstName, updateProfileApplicantProfileFormLastNameLabelSpan, profileEditLastName, updateProfileApplicantProfileFormTaglineLabelSpan, profileEditTagline, updateProfileApplicantProfileFormTwitterLabelSpan, profileEditTwitter, updateProfileApplicantProfileFormLinkedinLabelSpan,profileEditLinkedin, profileBasicInfoEditCancel, profileBasicInfoEditSave, profilePicUploadBtn, loginFormTitle, loginModalCopySpan, switchToRegister, loginModalEmailLabelSpan, login_email, loginModalPasswordLabelSpan, login_password, loginFormCancelBtn, loginFormLoginBtn, registerFormTitle, profileAboutMeEditTitle, updateAboutTextareaLabelSpan, profileEditAboutMe, profileAboutMeEditCancel, profileAboutMeEditSave,
 cancel, save, editYour
         ) {
@@ -193,10 +194,8 @@ cancel, save, editYour
     this.updateProfileChooseAltPhotoButtonLabelSpan = updateProfileChooseAltPhotoButtonLabelSpan;
     this.updateProfileChooseAltPhotoButton = updateProfileChooseAltPhotoButton;
     this.updateProfilePhotoCancelButton = updateProfilePhotoCancelButton;
-    this.updateProfileApplicantProfileFormFirstNameLabelSpan = updateProfileApplicantProfileFormFirstNameLabelSpan;
-    this.profileEditFirstName = profileEditFirstName;
-    this.updateProfileApplicantProfileFormLastNameLabelSpan = updateProfileApplicantProfileFormLastNameLabelSpan;
-    this.profileEditLastName = profileEditLastName;
+    this.updateProfileApplicantProfileFormNameLabelSpan = updateProfileApplicantProfileFormNameLabelSpan;
+    this.profileEditName = profileEditName;
     this.updateProfileApplicantProfileFormTaglineLabelSpan = updateProfileApplicantProfileFormTaglineLabelSpan;
     this.profileEditTagline = profileEditTagline;
     this.updateProfileApplicantProfileFormTwitterLabelSpan = updateProfileApplicantProfileFormTwitterLabelSpan;
@@ -221,6 +220,16 @@ cancel, save, editYour
     this.profileEditAboutMe = profileEditAboutMe;
     this.profileAboutMeEditCancel = profileAboutMeEditCancel;
     this.profileAboutMeEditSave = profileAboutMeEditSave;
+    this.accommodationTextStart = accommodationTextStart;
+    this.accommodationTextEnd = accommodationTextEnd;
+    this.jobPosterKeyTasksLabel = jobPosterKeyTasksLabel;
+    this.jobPosterCoreCompetenciesLabel = jobPosterCoreCompetenciesLabel;
+    this.jobPosterHiringManagerLabel = jobPosterHiringManagerLabel;
+    this.jobPosterClearanceLevelLabel = jobPosterClearanceLevelLabel;
+    this.jobPosterStartDateLabel = jobPosterStartDateLabel;
+    this.jobPosterJobLevelLabel = jobPosterJobLevelLabel;
+    this.jobPosterLanguageLabel = jobPosterLanguageLabel;
+    this.jobPosterTermLabel = jobPosterTermLabel;
     this.cancel = cancel;
     this.save = save;
     this.editYour = editYour;
@@ -327,14 +336,14 @@ TalentCloudAPI.load = function(){
     //console.log(location);
     //event.preventDefault();
     location_elements = location.split('\/');
-    console.log(location_elements[0]);
+    //console.log(location_elements[0]);
     data = location_elements[1];
     //console.log(window.location.href.indexOf("/"+TalentCloudAPI.roles.admin));
-    if(window.location.href.indexOf("/"+TalentCloudAPI.roles.admin) > -1) {
+    if(window.location.href.indexOf("/admin") > -1) {
         adminView = true;
         location_elements[0] !== ""?pageToReload = TalentCloudAPI.pages[location_elements[0].substring(1, location_elements[0].length)]:pageToReload = TalentCloudAPI.pages["adminhome"];
         TalentCloudAPI.loadAdmin();
-        console.log(pageToReload);
+        console.log(adminView);
         if(pageToReload !== undefined){
             pageToReload.state(data);
         }else{
@@ -376,16 +385,10 @@ TalentCloudAPI.loadPublic = function(){
     }
     LookupAPI.loadLookupData();
     DataAPI.getTalentCloudUI(locale,false);
+    //console(UserAPI.hasAuthToken());
     if(UserAPI.hasAuthToken()){
-        authToken = UserAPI.getAuthToken();
         if(UserAPI.hasSessionUser()){
-            var credentials = {};
-            sessionUser = UserAPI.getSessionUserAsJSON();
-            //console.log(sessionUser);
-            credentials.email = sessionUser.email;
-            //credentials.password = sessionUser.password;
-            credentials.authToken = authToken;
-            UserAPI.login(credentials);
+            UserAPI.login();
         }
     }
 
@@ -407,27 +410,15 @@ TalentCloudAPI.loadManager = function(){
     DataAPI.getTalentCloudUI(locale,true);
     if(UserAPI.hasAuthToken()){
         authToken = UserAPI.getAuthToken();
-        //console.log(authToken);
-        //if(!UserAPI.hasAuthTokenExpired()){
-            if(UserAPI.hasSessionUser()){
-                var credentials = {};
-                sessionUser = UserAPI.getSessionUserAsJSON();
-                //console.log(sessionUser);
-                credentials.email = sessionUser.email;
-                //credentials.password = sessionUser.password;
-                credentials.authToken = authToken;
-                //console.log(credentials);
-                UserAPI.login(credentials);
-                DataAPI.getJobSeekers(locale);
-                DepartmentAPI.getDepartments(locale);
-                DivisionAPI.getDivisions(locale);
-                //Add log user in automatically
-            }else{
-                DataAPI.getJobSeekers(locale);
-            }
-        /*}else{
+        if(UserAPI.hasSessionUser()){
+            UserAPI.login(true);
             DataAPI.getJobSeekers(locale);
-        }*/
+            DepartmentAPI.getDepartments(locale);
+            DivisionAPI.getDivisions(locale);
+            //Add log user in automatically
+        }else{
+            DataAPI.getJobSeekers(locale);
+        }
     }else{
         DataAPI.getJobSeekers(locale);
     }
@@ -642,7 +633,7 @@ TalentCloudAPI.setContent = function(content, isManager){
 
 
     if(isManager){
-        console.log(isManager);
+        //console.log(isManager);
 
         CreateWorkEnvironmentAPI.localizeCreateWorkEnvironment();
         EditTeamCultureAPI.localizeEditTeamCulture();
@@ -665,21 +656,22 @@ TalentCloudAPI.setContent = function(content, isManager){
         var adminAboutMe = document.getElementById("adminAboutMe");
         adminAboutMe.innerHTML = siteContent.adminAboutMe;
 
-        var adminProfilePositionLabel = document.getElementById("createEditProfile_position_label");
-        adminProfilePositionLabel.innerHTML = siteContent.adminProfilePositionLabel;
+        var adminProfilePositionLabel = document.getElementById("createEditProfile_position_labelName");
+        //adminProfilePositionLabel.innerHTML = siteContent.adminProfilePositionLabel;
 
-        var adminProfileDepartmentLabel = document.getElementById("createEditProfile_department_label");
-        adminProfileDepartmentLabel.innerHTML = siteContent.adminProfileDepartmentLabel;
+        var adminProfileDepartmentLabel = document.getElementById("createEditProfile_department_labelName");
+        //adminProfileDepartmentLabel.innerHTML = siteContent.adminProfileDepartmentLabel;
+
+        var createJobPosterWindowTitle = document.getElementById("createJobPosterWindowTitle");
+        createJobPosterWindowTitle.innerHTML = siteContent.createJobPosterWindowTitle;
 
         //var teamsLink = document.getElementById("teamsLink");
         //teamsLink.innerHTML = siteContent.teamsLink;
 
         //Create Job Poster
         //TODO: fix localization of terms for Create Job Poster
-        /*
-        var createJobPosterWindowTitle = document.getElementById("createJobPosterWindowTitle");
-        createJobPosterWindowTitle.innerHTML = siteContent.createJobPosterWindowTitle;
 
+        /*
         for(var i = 1;i < 4;i++){
             var stepOne = document.getElementById("createJobPosterTabLabel_" + i);
             stepOne.innerHTML = siteContent.step1;
@@ -890,17 +882,11 @@ TalentCloudAPI.setContent = function(content, isManager){
         var updateProfilePhotoCancelButton = document.getElementById("updateProfilePhotoCancelButton");
         updateProfilePhotoCancelButton.innerHTML = siteContent.updateProfilePhotoCancelButton;
 
-        var updateProfileApplicantProfileFormFirstNameLabelSpan = document.getElementById("updateProfileApplicantProfileFormFirstNameLabelSpan");
-        updateProfileApplicantProfileFormFirstNameLabelSpan.innerHTML = siteContent.updateProfileApplicantProfileFormFirstNameLabelSpan;
+        var updateProfileApplicantProfileFormNameLabelSpan = document.getElementById("updateProfileApplicantProfileFormNameLabelSpan");
+        updateProfileApplicantProfileFormNameLabelSpan.innerHTML = siteContent.updateProfileApplicantProfileFormNameLabelSpan;
 
-        var profileEditFirstName = document.getElementById("profileEditFirstName");
-        profileEditFirstName.name = siteContent.profileEditFirstName;
-
-        var updateProfileApplicantProfileFormLastNameLabelSpan = document.getElementById("updateProfileApplicantProfileFormLastNameLabelSpan");
-        updateProfileApplicantProfileFormLastNameLabelSpan.innerHTML = siteContent.updateProfileApplicantProfileFormLastNameLabelSpan;
-
-        var profileEditLastName = document.getElementById("profileEditLastName");
-        profileEditLastName.name = siteContent.profileEditLastName;
+        var profileEditName = document.getElementById("profileEditName");
+        profileEditName.name = siteContent.profileEditName;
 
         var updateProfileApplicantProfileFormTaglineLabelSpan = document.getElementById("updateProfileApplicantProfileFormTaglineLabelSpan");
         updateProfileApplicantProfileFormTaglineLabelSpan.innerHTML = siteContent.updateProfileApplicantProfileFormTaglineLabelSpan;
@@ -982,14 +968,44 @@ TalentCloudAPI.setContent = function(content, isManager){
             almostAlwaysElements[i].innerHTML = siteContent.almostAlways;
         }
 
-        //not working yet
-
-
         var managerDecisions_tipWhatis = document.getElementById("managerDecisions_tipWhatis");
-        managerDecisions_tipWhatis.innerHTML = siteContent.managerDecisions_tipWhatis;
+        //managerDecisions_tipWhatis.innerHTML = siteContent.managerDecisions_tipWhatis;
 
         var managerDecisions_tipSummary = document.getElementById("managerDecisions_tipSummary");
-        managerDecisions_tipSummary.innerHTML = siteContent.managerDecisions_tipSummary;
+        //managerDecisions_tipSummary.innerHTML = siteContent.managerDecisions_tipSummary;
+
+        var accommodationTextStart = document.getElementById("accommodationTextStart");
+        accommodationTextStart.innerHTML = siteContent.accommodationTextStart;
+
+        var accommodationTextEnd = document.getElementById("accommodationTextEnd");
+        accommodationTextEnd.innerHTML = siteContent.accommodationTextEnd;
+
+        var jobPosterKeyTasksLabel = document.getElementById("jobPosterKeyTasksLabel");
+        jobPosterKeyTasksLabel.innerHTML = siteContent.jobPosterKeyTasksLabel;
+
+        var jobPosterCoreCompetenciesLabel = document.getElementById("jobPosterCoreCompetenciesLabel");
+        jobPosterCoreCompetenciesLabel.innerHTML = siteContent.jobPosterCoreCompetenciesLabel;
+
+        var jobPosterDevelopingCompetenciesLabel = document.getElementById("jobPosterDevelopingCompetenciesLabel");
+        jobPosterDevelopingCompetenciesLabel.innerHTML = siteContent.jobPosterDevelopingCompetenciesLabel;
+
+        var jobPosterHiringManagerLabel = document.getElementById("jobPosterHiringManagerLabel");
+        jobPosterHiringManagerLabel.innerHTML = siteContent.jobPosterHiringManagerLabel;
+
+        var jobPosterClearanceLevelLabel = document.getElementById("jobPosterClearanceLevelLabel");
+        jobPosterClearanceLevelLabel.innerHTML = siteContent.jobPosterClearanceLevelLabel;
+
+        var jobPosterStartDateLabel = document.getElementById("jobPosterStartDateLabel");
+        jobPosterStartDateLabel.innerHTML = siteContent.jobPosterStartDateLabel;
+
+        var jobPosterJobLevelLabel = document.getElementById("jobPosterJobLevelLabel");
+        jobPosterJobLevelLabel.innerHTML = siteContent.jobPosterJobLevelLabel;
+
+        var jobPosterLanguageLabel = document.getElementById("jobPosterLanguageLabel");
+        jobPosterLanguageLabel.innerHTML = siteContent.jobPosterLanguageLabel;
+
+        var jobPosterTermLabel = document.getElementById("jobPosterTermLabel");
+        jobPosterTermLabel.innerHTML = siteContent.jobPosterTermLabel;
 
     }
 
