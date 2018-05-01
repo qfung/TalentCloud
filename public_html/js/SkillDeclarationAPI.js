@@ -62,7 +62,7 @@ SkillDeclarationAPI.populateApplicationUiSkillDeclarations = function (skillDecl
             if (description) {
                 description.value = declaration.description;
             }
-            
+
             //Run status change handler, because declartion may now be complete
             SkillDeclarationAPI.onStatusChange(declaration.criteria_id);
         }
@@ -90,41 +90,47 @@ SkillDeclarationAPI.saveSkillDeclarations = function (criteriaType, onSuccess) {
     }
 
     var submittedRequests = 0; //to keep track of number of PUT calls in progress
+    var requestsSuccessful = true;
+    
+    var applicationId = document.getElementById("createJobApplicationJobApplicationId").value;
 
     evidencePanels.forEach(panel => {
         var newSkillDeclaration = SkillDeclarationAPI.getSkillDeclarationFromEvidencePanel(panel);
-
-        var applicationId = document.getElementById("createJobApplicationJobApplicationId").value;
 
         if (applicationId) {
             //Only save if this declaration is complete
             if (newSkillDeclaration.isValid()) {
                 submittedRequests = submittedRequests + 1;
                 DataAPI.saveSkillDeclaration(newSkillDeclaration, newSkillDeclaration.criteria_id, applicationId, function (response) {
-                    if (response.status === 200) {
-                        submittedRequests = submittedRequests - 1;
-
-                        if (onSuccess && submittedRequests === 0) {
-                            //Only call onSuccess if all skills have been saved successfully
+                    if (response.status !== 200) {
+                        requestsSuccessful = false;
+                    }
+                    submittedRequests = submittedRequests - 1;
+                    if (submittedRequests === 0) {
+                        if (onSuccess && requestsSuccessful) {
+                            //Only call onSuccess if all requests have been successful
                             onSuccess();
+                        } else if (onFailure && !requestsSuccessful) {
+                            onFailure();
                         }
-                    } else {
-                        //TODO: how to respond to failed status? 
                     }
                 });
             } else {
                 //If declaration is not valid (ie not complete) delete it from the application
                 submittedRequests = submittedRequests + 1;
                 DataAPI.deleteSkillDeclaration(newSkillDeclaration.criteria_id, applicationId, function (response) {
-                    if (response.status === 200) {
-                        submittedRequests = submittedRequests - 1;
-                        if (onSuccess && submittedRequests === 0) {
-                            //Only call onSuccess if all skills have been saved successfully
-                            onSuccess();
-                        }
-                    } else {
-                        //TODO: how to respond to failed status? 
+                    if (response.status !== 200) {
+                    requestsSuccessful = false;
+                }
+                submittedRequests = submittedRequests - 1;
+                if (submittedRequests === 0) {
+                    if (onSuccess && requestsSuccessful) {
+                        //Only call onSuccess if all requests have been successful
+                        onSuccess();
+                    } else if (onFailure && !requestsSuccessful) {
+                        onFailure();
                     }
+                }
                 });
             }
         }
@@ -161,44 +167,24 @@ SkillDeclarationAPI.onStatusChange = function (criteriaId) {
     var skillDeclaration = SkillDeclarationAPI.getSkillDeclarationFromEvidencePanel(panel);
 
     if (skillDeclaration.isValid()) {
-        SkillDeclarationAPI.setDeclarationStatus(criteriaId, true);
-        //Un-hide optional fields
-        panel.querySelector(".applicant-evidence__optional-wrapper").classList.add("active");
-    } else {
-        SkillDeclarationAPI.setDeclarationStatus(criteriaId, false);
-        //Hide optional fields
-        panel.querySelector(".applicant-evidence__optional-wrapper").classList.remove("active");
-    }
-};
-
-SkillDeclarationAPI.setDeclarationStatus = function (criteriaId, isComplete) {
-    var panel = document.querySelector(".applicant-evidence__accordion-wrapper[data-criteria-id=\"" + criteriaId + "\"]:not(.template)");
-
-    if (isComplete) {
-        //Activate icon in accordion trigger
-        var check = panel.querySelector(".applicant-evidence__accordion-trigger-icon-wrapper .fa-check");
-        check.classList.add("active");
-
-        //Activate icon in menu item
-        var menuItem = document.querySelector(".applicant-evidence__desktop-menu-item[data-criteria-id=\"" + criteriaId + "\"]");
-        var menuCheck = menuItem.querySelector(".applicant-evidence__desktop-icon-wrapper .fa-check");
-        menuCheck.classList.add("active");
+        //Activate check icons
+        EvidenceAPI.setEvidenceIconStatus(criteriaId, "fa-check", true);
 
         //Activate completion message
         var completionMsg = panel.querySelector(".evidence__completion-wrapper");
         completionMsg.classList.add("active");
-    } else {
-        //Deactivate icon in accordion trigger
-        var check = panel.querySelector(".applicant-evidence__accordion-trigger-icon-wrapper .fa-check");
-        check.classList.remove("active");
 
-        //Deactivate icon in menu item
-        var menuItem = document.querySelector(".applicant-evidence__desktop-menu-item[data-criteria-id=\"" + criteriaId + "\"]");
-        var menuCheck = menuItem.querySelector(".applicant-evidence__desktop-icon-wrapper .fa-check");
-        menuCheck.classList.remove("active");
+        //Un-hide optional fields
+        panel.querySelector(".applicant-evidence__optional-wrapper").classList.add("active");
+    } else {
+        //Deactivate check icons
+        EvidenceAPI.setEvidenceIconStatus(criteriaId, "fa-check", false);
 
         //Deactivate completion message
         var completionMsg = panel.querySelector(".evidence__completion-wrapper");
         completionMsg.classList.remove("active");
+
+        //Hide optional fields
+        panel.querySelector(".applicant-evidence__optional-wrapper").classList.remove("active");
     }
 };
