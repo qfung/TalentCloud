@@ -1,4 +1,4 @@
-<!-- BEGIN - Applicant Profile Section -->
+<?php /* BEGIN - Applicant Profile Section */?>
 <section class="pageContent hidden" id="profileSection">
     <div class="pageBanner">
         <div class="profileBannerFiller"></div>
@@ -32,11 +32,11 @@
                 <div class="profileTagLineContainer">
                     <p id="profileTagLine">Default tag line!</p>
                     <p>
-                    <!--p>
-                        <strong>Available: </strong><span id="profileStartDate"></span>
-                        <br>
-                        <strong>Status: </strong><span id="profileStatus"></span>
-                    </p-->
+                    <?php /*<p>*/?>
+                    <?php /*<strong>Available: </strong><span id="profileStartDate"></span>*/?>
+                    <?php /*<br>*/?>
+                    <?php /*<strong>Status: </strong><span id="profileStatus"></span>*/?>
+                    <?php /*</p-->*/?>
                     </p>
                 </div>
                 <input type="hidden" id="profileId"/>
@@ -49,7 +49,7 @@
                 </div>
                 <p id="profileAboutMe">This is the about me section.</p>
             </div>
-            <!--
+            <?php/*
             <div id="profileSkillsWrapper" class="profileSubSection">
                 <div class="profileSubSectionTitleBar">
                     <h2>My Skills and Knowledge</h2>
@@ -57,8 +57,8 @@
                 </div>
                 <ul id="profileSkillsList">
                 </ul>
-            </div>
-            -->
+            </div>*/
+            ?>
         </div>
     </div>
 </section>

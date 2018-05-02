@@ -7,7 +7,7 @@ and open the template in the editor .
 <html lang="en">
 <head>
     <title>GC Talent Cloud</title>
-    <!-- Includes for metadata / scripts -->
+    <!-- // Includes for metadata / scripts -->
     <?php
     include '../inc/common/head.php';
     include '../inc/manager/head-admin.php';
@@ -15,14 +15,14 @@ and open the template in the editor .
 </head>
 
 <body>
-    <!-- Include for Federal Identity Program (black banner) -->
+    <?php // Include for Federal Identity Program (black banner) ?>
     <?php include '../inc/manager/header-fip.php'; ?>
-    <!-- Include for main navigation -->
+    <?php // Include for main navigation ?>
     <?php include '../inc/manager/header-nav.php'; ?>
 
-    <!-- BEGIN - Overlays (all should be children of this div) -->
+    <?php // BEGIN - Overlays (all should be children of this div) ?>
     <div id="overlays">
-        <!-- BEGIN - Includes for modal dialogs -->
+        <?php // BEGIN - Includes for modal dialogs ?>
         <?php
         include '../inc/manager/modal-registration.php';
         include '../inc/manager/modal-login.php';

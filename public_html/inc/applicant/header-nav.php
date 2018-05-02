@@ -9,9 +9,11 @@
                             <a href="/" id="homeLink">Home</a>
                         </div>
                     </li>
-                    <!--li class="top-nav--link">
-                        <a href="/about">FAQ</a>
-                    </li>-->
+                    <?php /*
+                    <li class="top-nav--link">
+                    <a href="/about">FAQ</a>
+                    </li>--> 
+                    */?>
                     <li class="top-nav--link" id="browseLinkListItem">
                         <div id="browse">
                             <a href="#BrowseJobs" id="browseLink" onclick="JobPostAPI.showBrowseJobs();TalentCloudAPI.setNav('browseLinkListItem');">Browse Jobs</a>
@@ -40,13 +42,14 @@
                     </li>
                 </ul>
             </div>
-            <!--div id="logo" class="logo-container">
-                <a href="/" role="img" aria-label="GC Talent Cloud">
-                    <img class="tc-logo" src="/images/talentcloudHomepage.png" width="259" alt="GC Talent Cloud logo"/>
-                </a>
-                <div class="h1 col-xs-12 col-sm-7 col-md-6">People have a right to meaningful work.</div>
-            </div-->
-
+            <?php /*
+            <div id="logo" class="logo-container">
+            <a href="/" role="img" aria-label="GC Talent Cloud">
+            <img class="tc-logo" src="/images/talentcloudHomepage.png" width="259" alt="GC Talent Cloud logo"/>
+            </a>
+            <div class="h1 col-xs-12 col-sm-7 col-md-6">People have a right to meaningful work.</div>
+            </div>
+            */ ?>
         </div>
     </div>
 </nav>

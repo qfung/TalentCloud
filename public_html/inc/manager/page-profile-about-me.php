@@ -1,4 +1,4 @@
-<!-- BEGIN - Edit Admin Profile Section -->
+<?php // BEGIN - Edit Admin Profile Section ?>
 <section id="createEditProfileSection" class="pageContent hidden">
     <div class="pageBanner">
         <div class="profileBannerFiller"></div>
@@ -14,11 +14,11 @@
                     </a>
                 </div>
             </div>
-            <!-- BEGIN - Edit Admin Profile Form (Page 1 / About Me) -->
+            <?php // BEGIN - Edit Admin Profile Form (Page 1 / About Me) ?>
             <div class="wb-frmvld wb-init">
                 <div class="tabbedForm">
                     <div class="section">
-                        <!-- Where the old steps resided -->
+                        <?php // Where the old steps resided ?>
                         <form method="post" name="CreateEditProfileForm" id="CreateEditProfileForm">
                             <input type="hidden" id="UserId"/>
                             <input type="hidden" id="ManagerProfileId"/>
@@ -215,4 +215,4 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- END - Edit Admin Profile Form (Page 1 / About Me) -->
+                            <?php // END - Edit Admin Profile Form (Page 1 / About Me) ?>

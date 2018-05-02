@@ -1,4 +1,4 @@
-<!-- BEGIN - Edit Admin Profile Form (Page 5 / Other) -->
+<?php // BEGIN - Edit Admin Profile Form (Page 5 / Other) ?>
 <div id="createEditProfile_step3" class="stepGroup_createEditProfile hidden">
     <div class="tabsWrapper">
         <div class="tabsSteps">
@@ -52,7 +52,7 @@
         </div>
     </div>
 </div>
-<!-- END - Edit Admin Profile Form (Page 5 / Other) -->
+<?php // END - Edit Admin Profile Form (Page 5 / Other) ?>
 </form>
 </div>
 </div>
@@ -60,4 +60,4 @@
 </div>
 </div>
 </section>
-<!-- END - Edit Admin Profile Section -->
+<?php // END - Edit Admin Profile Section ?>

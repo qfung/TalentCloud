@@ -1,4 +1,4 @@
-<!-- BEGIN - Edit Admin Profile Form (Page 3 / Work Environment) -->
+<?php /* BEGIN - Edit Admin Profile Form (Page 3 / Work Environment) */?>
 <div id="createEditProfile_workEnvironment" class="stepGroup_createEditProfile hidden">
     <div class="tabsWrapper">
         <div class="tabsSteps">
@@ -113,4 +113,4 @@
             </div>
         </div>
     </div>
-    <!-- END - Edit Admin Profile Form (Page 3 / Work Environment) -->
+    <?php /* END - Edit Admin Profile Form (Page 3 / Work Environment) */?>

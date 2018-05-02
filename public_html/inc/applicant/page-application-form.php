@@ -13,7 +13,7 @@
     
     <div class="pageBody">
 
-        <!-- Some aesthetic rework was done here during TAL-102 -->
+        <?php/* Some aesthetic rework was done here during TAL-102 */?>
         <div class="application-profile__wrapper block-container">
 
             <img id="createJobApplicationProfilePic" class="profilePicLarge" src="images/user.png" alt="My Profile Pic"/>
@@ -34,20 +34,20 @@
 
         </div>
 
-        <!-- TAL-102 ====================================================== -->
+        <?php /* TAL-102 ====================================================== */ ?>
         <div class="skills__wrapper block-container">
 
             <div class="skills__group-wrapper">
 
-                <!-- Group (Essential, Asset, etc.) Title -->
+                <?php /* Group (Essential, Asset, etc.) Title */?>
                 <h3 class="skills__group-title heading--03">Essential Criteria (All Criteria Required)</h3>
 
-                <!-- Optional Group Copy (See Asset Mockup) -->
+                <?php /* Optional Group Copy (See Asset Mockup) */?>
                 <p class="skills__group-copy">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maxime dicta quod? Soluta at aliquid in nesciunt, quis voluptatibus possimus eaque ab inventore nam iusto omnis enim dolores. Accusantium, laudantium!</p>
 
-                <!-- Repeatable Skill Accordion -->
+                <?php /* Repeatable Skill Accordion */?>
 
-                <!-- DEV-NOTE: This accordion can be used over and over for each skill. The two included in the HTML below here are simply there for reference. One class will have to be altered depending on the state of the user's interaction with the skill. This occurs on the "skills__accordion-trigger". There are 3 modifiers that can be applied to change their icon state: "skills__accordion-trigger--todo", "skills__accordion-trigger--edit", and "skills__accordion-trigger--complete". These will need to be applied based on the state of the content entry. All accordions should begin with the "--todo" modifier. -->
+                <?php /* DEV-NOTE: This accordion can be used over and over for each skill. The two included in the HTML below here are simply there for reference. One class will have to be altered depending on the state of the user's interaction with the skill. This occurs on the "skills__accordion-trigger". There are 3 modifiers that can be applied to change their icon state: "skills__accordion-trigger--todo", "skills__accordion-trigger--edit", and "skills__accordion-trigger--complete". These will need to be applied based on the state of the content entry. All accordions should begin with the "--todo" modifier. */?>
 
                 <div class="skills__accordion">
                     
@@ -64,7 +64,7 @@
                     <div class="skills__accordion-content flex-grid top">
                         <div class="box med-1of2 lg-2of5">
                             <form class="form__wrapper">
-                                <!-- DEV-NOTE: Accessibility wise, we'll want to add numeric values to the for and ID values here to ensure there is no repitition. Each skill accordion will require its own set. -->
+                                <?php /* DEV-NOTE: Accessibility wise, we'll want to add numeric values to the for and ID values here to ensure there is no repitition. Each skill accordion will require its own set. */?>
                                 <label class="form__label" for="selectYearsOfExperience">Years of Experience</label>
                                 <div class="form__select-wrapper">
                                     <select class="form__select" id="selectYearsOfExperience" name="Select Years of Experience">
@@ -75,7 +75,7 @@
                                         <option>8 or More</option>
                                     </select>
                                 </div>
-                                <!-- DEV-NOTE: Same accessibility statement as above here. -->
+                                <?php// DEV-NOTE: Same accessibility statement as above here. ?>
                                 <label class="form__label" for="selectLevel">Level</label>
                                 <div class="form__select-wrapper">
                                     <select class="form__select" id="selectLevel" name="Select Level">
@@ -89,7 +89,7 @@
                         </div>
                         <div class="box med-1of2 lg-3of5">
                             <form class="form__wrapper">
-                                <!-- DEV-NOTE: Same accessibility statement as above here. -->
+                                <?php /* DEV-NOTE: Same accessibility statement as above here. */?>
                                 <label class="form__label" for="typeExperience">Tell us about your experience:</label>
                                 <textarea class="form__textarea" id="typeExperience" name="Type your Experience" placeholder="How did you get this experience? What lessons did you learn?"></textarea>
                             </form>
@@ -121,7 +121,7 @@
                     <div class="skills__accordion-content flex-grid top">
                         <div class="box med-1of2 lg-2of5">
                             <form class="form__wrapper">
-                                <!-- DEV-NOTE: Accessibility wise, we'll want to add numeric values to the for and ID values here to ensure there is no repitition. Each skill accordion will require its own set. -->
+                                <?php //DEV-NOTE: Accessibility wise, we'll want to add numeric values to the for and ID values here to ensure there is no repitition. Each skill accordion will require its own set. ?>
                                 <label class="form__label" for="selectYearsOfExperience">Years of Experience</label>
                                 <div class="form__select-wrapper" id="selectYearsOfExperience" name="Select Years of Experience">
                                     <select class="form__select">
@@ -132,7 +132,7 @@
                                         <option>8 or More</option>
                                     </select>
                                 </div>
-                                <!-- DEV-NOTE: Same accessibility statement as above here. -->
+                                <?php //DEV-NOTE: Same accessibility statement as above here. ?>
                                 <label class="form__label" for="selectLevel">Level</label>
                                 <div class="form__select-wrapper">
                                     <select class="form__select" id="selectLevel" name="Select Level">
@@ -146,7 +146,7 @@
                         </div>
                         <div class="box med-1of2 lg-3of5">
                             <form class="form__wrapper">
-                                <!-- DEV-NOTE: Same accessibility statement as above here. -->
+                               <?php // DEV-NOTE: Same accessibility statement as above here. ?>
                                 <label class="form__label" for="typeExperience">Tell us about your experience:</label>
                                 <textarea class="form__textarea" id="typeExperience" name="Type your Experience" placeholder="How did you get this experience? What lessons did you learn?"></textarea>
                             </form>
@@ -162,7 +162,7 @@
 
                 </div>
 
-                <!-- DEV-NOTE: This accordion is only here for visual reference and can be deleted. -->
+                <?php //DEV-NOTE: This accordion is only here for visual reference and can be deleted. ?>
                 <div class="skills__accordion">
                     
                     <div class="skills__accordion-trigger--complete flex-grid middle" role="button" tabindex="0">
@@ -178,7 +178,7 @@
                     <div class="skills__accordion-content flex-grid top">
                         <div class="box med-1of2 lg-2of5">
                             <form class="form__wrapper">
-                                <!-- DEV-NOTE: Accessibility wise, we'll want to add numeric values to the for and ID values here to ensure there is no repitition. Each skill accordion will require its own set. -->
+                                <?php //DEV-NOTE: Accessibility wise, we'll want to add numeric values to the for and ID values here to ensure there is no repitition. Each skill accordion will require its own set. ?>
                                 <label class="form__label" for="selectYearsOfExperience">Years of Experience</label>
                                 <div class="form__select-wrapper" id="selectYearsOfExperience" name="Select Years of Experience">
                                     <select class="form__select">
@@ -189,7 +189,7 @@
                                         <option>8 or More</option>
                                     </select>
                                 </div>
-                                <!-- DEV-NOTE: Same accessibility statement as above here. -->
+                                <?php //DEV-NOTE: Same accessibility statement as above here. ?>
                                 <label class="form__label" for="selectLevel">Level</label>
                                 <div class="form__select-wrapper">
                                     <select class="form__select" id="selectLevel" name="Select Level">
@@ -203,7 +203,7 @@
                         </div>
                         <div class="box med-1of2 lg-3of5">
                             <form class="form__wrapper">
-                                <!-- DEV-NOTE: Same accessibility statement as above here. -->
+                                <?php //DEV-NOTE: Same accessibility statement as above here. ?>
                                 <label class="form__label" for="typeExperience">Tell us about your experience:</label>
                                 <textarea class="form__textarea" id="typeExperience" name="Type your Experience" placeholder="How did you get this experience? What lessons did you learn?"></textarea>
                             </form>
@@ -223,7 +223,7 @@
 
         </div>
 
-        <!-- Some minor structural work was done here during TAL-102 -->
+        <?php// Some minor structural work was done here during TAL-102 ?>
         <div id='createJobApplicationButtonWrapper' class="application-button__wrapper">
 
             <button id="createJobApplicationSubmitButton" class="button--yellow" value="View" onclick="JobApplicationAPI.submitNewJobApplication();">

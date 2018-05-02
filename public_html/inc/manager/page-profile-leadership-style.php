@@ -1,4 +1,4 @@
-<!-- BEGIN - Edit Admin Profile Form (Page 2 / Leadership Style) -->
+<?php // BEGIN - Edit Admin Profile Form (Page 2 / Leadership Style) ?>
 <div id="createEditProfile_step2" class="stepGroup_createEditProfile hidden">
     <div class="tabsWrapper">
         <div class="tabsSteps">
@@ -237,4 +237,4 @@
     </div>
 </div>
 </div>
-<!-- END - Edit Admin Profile Form (Page 2 / Leadership Style) -->
+<?php // END - Edit Admin Profile Form (Page 2 / Leadership Style) ?>
