@@ -264,7 +264,7 @@ Utilities.replaceElementText = function (element, newText) {
 Utilities.removeChildNodes = function (element) {
     while (element.firstChild)
         element.removeChild(element.firstChild);
-}
+};
 
 Utilities.clearSelectOptions = function (selectElement)
 {
@@ -299,7 +299,7 @@ Utilities.addWindowEventListener = function (event, myFunction) {
         var onEvent = "on" + event;
         window.attachEvent(onEvent, myFunction);
     }
-}
+};
 
 // Modal Height Calculation ===================================================
 function modalSize() {
@@ -337,7 +337,7 @@ Utilities.accordionClickListener = function (e) {
     if (this.classList.contains("active")) {
         // Closes all accordions.
         for (let x of accordionTrigger) {
-            x.classList.remove("active")
+            x.classList.remove("active");
             x.setAttribute("aria-expanded", "false");
             for (let y of accordionContent) {
                 y.classList.remove("active");
@@ -347,7 +347,7 @@ Utilities.accordionClickListener = function (e) {
     } else {
         // Closes all accordions.
         for (let x of accordionTrigger) {
-            x.classList.remove("active")
+            x.classList.remove("active");
             x.setAttribute("aria-expanded", "false");
             for (let y of accordionContent) {
                 y.classList.remove("active");
@@ -385,7 +385,7 @@ Utilities.setAccordionTriggers = function () {
         // Checks for a click.
         i.addEventListener('click', Utilities.accordionClickListener);
         // Checks for an Enter key click.
-        i.addEventListener("keyup", Utilities.accordionKeyupListener);
+        i.addEventListener("keydown", Utilities.accordionKeyupListener);
     }
 };
 
@@ -413,11 +413,46 @@ Utilities.setMobileNavTriggers = function () {
     // Checks for a click.
     mobileMenuTrigger.addEventListener('click', Utilities.mobileNavClickListener);
     // Checks for an Enter key click.
-    mobileMenuTrigger.addEventListener("keyup", Utilities.accordionKeyupListener);
+    mobileMenuTrigger.addEventListener("keydown", Utilities.accordionKeyupListener);
 };
+
+Utilities.applicantLandingVideoClickListener = function(e) {
+
+    var landingVideoTrigger = document.getElementById("applicantLandingVideoTranscriptTrigger");
+    var landingVideoTranscript = document.getElementById("applicantLandingVideoTranscript");
+
+    e.preventDefault();
+
+    if (this.classList.contains("active")) {
+        this.classList.remove("active");
+        this.setAttribute("aria-expanded", "false");
+        landingVideoTranscript.classList.remove("active");
+        landingVideoTranscript.setAttribute("aria-hidden", "true");
+    }
+    else {
+        this.classList.add("active");
+        this.setAttribute("aria-expanded", "true");
+        landingVideoTranscript.classList.add("active");
+        landingVideoTranscript.setAttribute("aria-hidden", "false");
+    }
+
+}
+
+Utilities.setApplicantLandingVideoTriggers = function () {
+    // Gets all elements on the page with "accordion-trigger".
+    var landingVideoTrigger = document.getElementById("applicantLandingVideoTranscriptTrigger");
+    if (landingVideoTrigger !== null) {
+        // Checks for a click.
+        landingVideoTrigger.addEventListener('click', Utilities.applicantLandingVideoClickListener);
+        // Checks for an Enter key click.
+        landingVideoTrigger.addEventListener("keydown", Utilities.accordionKeyupListener);
+    }
+};
+
 
 Utilities.addWindowEventListener("load", Utilities.setAccordionTriggers);
 Utilities.addWindowEventListener("load", Utilities.setMobileNavTriggers);
+Utilities.addWindowEventListener("load", Utilities.setApplicantLandingVideoTriggers);
 
 Utilities.getHeroElements = function() {
 
@@ -434,12 +469,12 @@ Utilities.getHeroElements = function() {
     browseHeroPosterMetaData.classList.add("hidden");
     applicationHeroMetadata.classList.add("hidden");
 
-}
+};
 
 // Applicant Evidence UI =======================================================
 Utilities.setEvidenceUiEventListeners = function (e) {
     // Set the landscape tablet media query.
-    var w = window.matchMedia("(min-width: 64em)")
+    var w = window.matchMedia("(min-width: 64em)");
     // Check to see if the screen is larger than a landscape tablet (this indicates that the desktop tab menu will be showing).
     if (w.matches) {
         // Set variables for the desktop menu items and the associated evidence panes.
@@ -518,7 +553,7 @@ function evidenceMenuItemKeyup(e) {
     // Cancels the default action.
     e.preventDefault();
     // Checks to see if the key pressed was Enter (13).
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
         // Triggers a click, thus activating the click event listener.
         this.click();
     }
@@ -526,7 +561,7 @@ function evidenceMenuItemKeyup(e) {
 
 function evidenceFirstTargetKeydown(e) {
     // Check to see if the Shift key is being pressed in tandom with the Tab key (9).
-    if (e.shiftKey && e.keyCode == 9) {
+    if (e.shiftKey && e.keyCode === 9) {
         // Prevent the default action.
         e.preventDefault();
         // Set a variable that gets the element's parent's data attribute.
@@ -547,7 +582,7 @@ function evidenceEarlyLastTargetKeydown(e) {
     if (this.closest(".form__wrapper").nextElementSibling.classList.contains("active")) {
         // Continue on your way.
     } else {
-        if (!e.shiftKey && e.keyCode == 9) {
+        if (!e.shiftKey && e.keyCode === 9) {
             var triggerData = this.closest(".applicant-evidence__accordion-wrapper").getAttribute("data-evidence-target");
             var desktopEvidenceTrigger = document.querySelectorAll(".applicant-evidence__desktop-menu-item");
             for (let i of desktopEvidenceTrigger) {
@@ -563,7 +598,7 @@ function evidenceEarlyLastTargetKeydown(e) {
 }
 
 function evidenceLastTargetKeydown(e) {
-    if (!e.shiftKey && e.keyCode == 9) {
+    if (!e.shiftKey && e.keyCode === 9) {
         var triggerData = this.closest(".applicant-evidence__accordion-wrapper").getAttribute("data-evidence-target");
         var desktopEvidenceTrigger = document.querySelectorAll(".applicant-evidence__desktop-menu-item");
         for (let i of desktopEvidenceTrigger) {
@@ -583,14 +618,14 @@ function evidenceAccordionTriggerClick(e) {
     if (this.classList.contains("active")) {
         // If it is active, close all accordions.
         for (let x of evidenceAccordionTrigger) {
-            x.classList.remove("active")
+            x.classList.remove("active");
             x.nextElementSibling.classList.remove("active");
             x.setAttribute("aria-expanded", "false");
         }
     } else {
         // Close all accordions.
         for (let x of evidenceAccordionTrigger) {
-            x.classList.remove("active")
+            x.classList.remove("active");
             x.nextElementSibling.classList.remove("active");
             x.setAttribute("aria-expanded", "false");
         }
@@ -607,7 +642,7 @@ Utilities.addWindowEventListener("resize", Utilities.setEvidenceUiEventListeners
 // Applicant Evidence Preview UI ===============================================
 Utilities.setEvidencePreviewUiEventListeners = function () {
     // Set the landscape tablet media query.
-    var w = window.matchMedia("(min-width: 64em)")
+    var w = window.matchMedia("(min-width: 64em)");
     // Check to see if the screen is larger than a landscape tablet (this indicates that the desktop tab menu will be showing).
     if (w.matches) {
         // Set variables for the desktop menu items and the associated evidence panes.
@@ -647,14 +682,14 @@ function evidencePreviewAccordionClick(e) {
     if (this.classList.contains("active")) {
         // If it is active, close all accordions.
         for (let x of evidenceAccordionTrigger) {
-            x.classList.remove("active")
+            x.classList.remove("active");
             x.nextElementSibling.classList.remove("active");
             x.setAttribute("aria-expanded", "false");
         }
     } else {
         // Close all accordions.
         for (let x of evidenceAccordionTrigger) {
-            x.classList.remove("active")
+            x.classList.remove("active");
             x.nextElementSibling.classList.remove("active");
             x.setAttribute("aria-expanded", "false");
         }
@@ -701,7 +736,7 @@ function evidencePreviewMenuItemKeyup(e) {
     // Cancels the default action.
     e.preventDefault();
     // Checks to see if the key pressed was Enter (13).
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
         // Triggers a click, thus activating the click event listener.
         this.click();
     }
@@ -709,7 +744,7 @@ function evidencePreviewMenuItemKeyup(e) {
 
 function evidencePreviewLinkKeydown(e) {
     // Check to see if the Shift key is being pressed in tandom with the Tab key (9).
-    if (e.shiftKey && e.keyCode == 9) {
+    if (e.shiftKey && e.keyCode === 9) {
         // Prevent the default action.
         e.preventDefault();
         // Set a variable that gets the element's parent's data attribute.
@@ -723,7 +758,7 @@ function evidencePreviewLinkKeydown(e) {
                 i.focus();
             }
         }
-    } else if (!e.shiftKey && e.keyCode == 9) {
+    } else if (!e.shiftKey && e.keyCode === 9) {
         var triggerData = this.closest(".applicant-evidence-preview__accordion-wrapper").getAttribute("data-evidence-target");
         var desktopEvidenceTrigger = document.querySelectorAll(".applicant-evidence-preview__desktop-menu-item");
         for (let i of desktopEvidenceTrigger) {

@@ -107,9 +107,9 @@
             <?php else : ?>
 
                 <?php if ($hasUser!=null) : ?>
-                    <div class="page-hero__navigation-item box med-1of5 lg-1of6 hidden" id="navigationLoginLinkWrapper" aria-hidden="true">
+                    <div class="page-hero__navigation-item box med-1of5 lg-1of6 hidden" id="navigationLoginLinkWrapper">
                 <?php else :?>
-                    <div class="page-hero__navigation-item box med-1of5 lg-1of6" id="navigationLoginLinkWrapper" aria-hidden="false">
+                    <div class="page-hero__navigation-item box med-1of5 lg-1of6" id="navigationLoginLinkWrapper">
                 <?php endif; ?>
                         <?php
                             $loginLink = "";
@@ -128,7 +128,7 @@
             <?php endif; ?>
 
             <!-- Logout -->
-            <div class="page-hero__navigation-item box med-1of5 lg-1of6 hidden" id="navigationLogoutLinkWrapper" aria-hidden="true">
+            <div class="page-hero__navigation-item box med-1of5 lg-1of6 hidden" id="navigationLogoutLinkWrapper">
                 <a href="javascript:void(0)" id="navigationLogoutLink" onclick="UserAPI.logout()">
                     Logout
                 </a>
@@ -145,7 +145,12 @@
             <div class="flex-grid middle">
 
                 <div class="box lg-1of2">
-                    <a href="/" role="img" aria-label="GC Talent Cloud" class="landing-hero__link">
+                    <!-- Checks to see if the page is the admin portal and then displays the admin tagline. -->
+                    <?php if (strpos($url,'admin') !== false) : ?>
+                        <a href="/admin/" role="img" aria-label="GC Talent Cloud" class="landing-hero__link">
+                    <?php else : ?>
+                        <a href="/" role="img" aria-label="GC Talent Cloud" class="landing-hero__link">
+                    <?php endif ?>
                         <img id="logoSrc" class="landing-hero__logo" src="/images/talent-cloud-logo_full.png" width="229" alt="GC Talent Cloud graphic"/>
                     </a>
                 </div>
