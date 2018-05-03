@@ -98,15 +98,28 @@ DataAPI.talentcloudDataloaded = function(responseText,isManager){
     var content = data.content;
 
     var thisContent = new TalentCloudAPI.Content();
+    // Navigation Links
+    thisContent.navigationLoginLink = content.navigationLoginLink;
+    thisContent.navigationLogoutLink = content.navigationLogoutLink;
+    thisContent.navigationRegisterLink = content.navigationRegisterLink;
+    thisContent.navigationHomeLink = content.navigationHomeLink;
+    thisContent.navigationProfileLink = content.navigationProfileLink;
+    thisContent.navigationBrowseLink = content.navigationBrowseLink;
+    thisContent.navigationDashboardLink = content.navigationDashboardLink;
+    thisContent.navigationPosterLink = content.navigationPosterLink;
+    // Subpage Titles
+    thisContent.browseHeroTitle = content.browseHeroTitle;
+    thisContent.dashboardHeroTitle = content.dashboardHeroTitle;
+    thisContent.profileHeroTitle = content.profileHeroTitle;
+    thisContent.applicationHeroTitle = content.applicationHeroTitle;
+    thisContent.managerProfileHeroTitle = content.managerProfileHeroTitle;
+    thisContent.posterHeroTitle = content.posterHeroTitle;
+    thisContent.faqHeroTitle = content.faqHeroTitle;
+    // Others
     thisContent.title = content.title;
     thisContent.helpLearn = content.helpLearn;
     thisContent.languageSelect = content.languageSelect;
-    thisContent.loginLink = content.loginLink;
-    thisContent.logoutLink = content.logoutLink;
-    thisContent.registerLink = content.registerLink;
     thisContent.applyNow = content.applyNow;
-    thisContent.homeLink = content.homeLink;
-    thisContent.profileLink = content.profileLink;
     thisContent.jobPostersLink = content.jobPostersLink;
     thisContent.teamsLink = content.teamsLink;
     thisContent.jobNumber = content.jobNumber;
@@ -160,7 +173,6 @@ DataAPI.talentcloudDataloaded = function(responseText,isManager){
     thisContent.usually = content.usually;
     thisContent.almostAlways = content.almostAlways;
     thisContent.name = content.name;
-    thisContent.browseLink = content.browseLink;
     thisContent.gctc = content.gctc;
     thisContent.at = content.at;
     thisContent.readMore = content.readMore;
@@ -194,7 +206,6 @@ DataAPI.talentcloudDataloaded = function(responseText,isManager){
     thisContent.announcement = content.announcement;
     thisContent.adminPortal = content.adminPortal;
     thisContent.applicantPortal = content.applicantPortal;
-    thisContent.dashBoardLink = content.dashBoardLink;
     thisContent.yourApplicationsTitle = content.yourApplicationsTitle;
     thisContent.workEnvironment = content.workEnvironment;
     thisContent.remoteLocationAllowed = content.remoteLocationAllowed;
@@ -290,6 +301,11 @@ DataAPI.talentcloudDataloaded = function(responseText,isManager){
     thisContent.save = content.save;
     thisContent.cancel = content.cancel;
     thisContent.editYour = content.editYour;
+    thisContent.jobPosterTeamNarrativeText_label = content.jobPosterTeamNarrativeText_label;
+    thisContent.jobPosterOperatingContext_label = content.jobPosterOperatingContext_label;
+    thisContent.jobPosterWhatWeValue_label = content.jobPosterWhatWeValue_label;
+    thisContent.jobPosterHowWeWork_label = content.jobPosterHowWeWork_label;
+
     //if(siteContent){
         TalentCloudAPI.setContent(thisContent,isManager);
     //}

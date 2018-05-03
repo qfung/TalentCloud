@@ -84,7 +84,10 @@ CreateJobPosterAPI.JobPostNonLocalized = function(
     this.questions = {};
     this.questions.en_CA = questions_en;
     this.questions.fr_CA = questions_fr;
-    
+    this.classification = classification;
+    this.clearance_id = clearance_id;
+    this.language_id = language_id;
+
     this.term_units_id = 2; //default to months for now
     this.job_min_level_id = 1; //default to CS1
     this.job_max_level_id = 3; //default to CS3
@@ -113,8 +116,11 @@ CreateJobPosterAPI.localizeJobPost = function(jobPostNonLocalized, locale) {
             jp.key_tasks[locale],
             jp.core_competencies[locale],
             jp.developing_competencies[locale],
-            jp.other_requirements[locale],
-            jp.questions[locale]
+            jp.questions[locale],
+            jp.classification,
+            LookupAPI.getLocalizedLookupValue("clearance", jp.clearance_id),
+            LookupAPI.getLocalizedLookupValue("language", jp.language_id),
+            jp.start_date
             );
 };
 
@@ -131,6 +137,15 @@ CreateJobPosterAPI.showCreateJobPosterForm = function(){
     
     var createJobPosterSection = document.getElementById("createJobPosterSection");
     createJobPosterSection.classList.remove("hidden");
+
+    // New Subpage Hero Scripts
+
+    Utilities.getHeroElements();
+
+    var posterHeroTitle = document.getElementById("posterHeroTitle");
+    posterHeroTitle.classList.remove("hidden");
+    posterHeroTitle.setAttribute("aria-hidden", "false");
+
 };
 
 CreateJobPosterAPI.localizeCreateJobPosterForm = function(siteContent) {
@@ -152,16 +167,12 @@ CreateJobPosterAPI.prepopulateValuesFromManagerProfile = function(managerProfile
         var response = JSON.parse(managerProfileResponse);
         
         document.getElementById("createJobPoster_department").value = response.manager_profile.user_manager_profile_department_id;
-        
-        //TODO: prepopulate french fields as well
-        var branch = response.manager_profile_details.user_manager_profile_details_branch;
-        if (branch) {
-            document.getElementById("createJobPoster_branch").value = branch;
-        }
-        var division = response.manager_profile_details.user_manager_profile_details_division;
-        if (division) {
-            document.getElementById("createJobPoster_division").value = division;
-        }
+
+        document.getElementById("createJobPoster_branch").value = response.manager_profile_details.en_CA.user_manager_profile_details_branch;
+        document.getElementById("createJobPoster_branch_fr").value = response.manager_profile_details.fr_CA.user_manager_profile_details_branch;
+        document.getElementById("createJobPoster_division").value = response.manager_profile_details.en_CA.user_manager_profile_details_division;
+        document.getElementById("createJobPoster_division_fr").value = response.manager_profile_details.fr_CA.user_manager_profile_details_division;
+
     }
 };
 

@@ -55,6 +55,10 @@ JobPostAPI.JobPost = function(id,manager_user_id,title,applicants_to_date,close_
     this.developing_competencies = developing_competencies;
     this.other_requirements = other_requirements;
     this.questions = questions;
+    this.classification = classification;
+    this.security_clearance = security_clearance;
+    this.language_requirement = language_requirement;
+    this.start_date = start_date;
 };
 
 JobPostAPI.JobPosterQuestion = function(id, question) {
@@ -76,6 +80,15 @@ JobPostAPI.showBrowseJobs = function() {
     
     var locale = TalentCloudAPI.getLanguageFromCookie();
     DataAPI.getJobs(locale, JobPostAPI.populateJobObjectList);
+
+    // New Subpage Hero Scripts
+
+    Utilities.getHeroElements();
+
+    var browseHeroTitle = document.getElementById("browseHeroTitle");
+    browseHeroTitle.classList.remove("hidden");
+    browseHeroTitle.setAttribute("aria-hidden", "false");
+
 };
 
 /**
@@ -408,6 +421,17 @@ JobPostAPI.viewJobPoster = function(jobId){
         // focus top of page
         window.scrollTo(0,0);
     });
+
+    // New Subpage Hero Scripts
+
+    Utilities.getHeroElements();
+
+    var browseHeroTitle = document.getElementById("browseHeroTitle");
+    var browseHeroPosterMetaData = document.getElementById("browseHeroPosterMetaData");
+    browseHeroTitle.classList.remove("hidden");
+    browseHeroTitle.setAttribute("aria-hidden", "false");
+    browseHeroPosterMetaData.classList.remove("hidden");
+
 };
 
 JobPostAPI.localizeJobPoster = function() {
@@ -435,18 +459,28 @@ JobPostAPI.populateJobPoster = function(jobData){
     //Load Hiring Manager Name
     DataAPI.getUser(jobData.manager_user_id, function(response) {
        var managerUser = JSON.parse(response);
-       document.getElementById('jobPosterHiringManagerName').innerHTML = managerUser.user.firstname + ' ' + managerUser.user.lastname;
-    });    
+       document.getElementById('jobPosterHiringManagerName').innerHTML = managerUser.user.name;
+       document.getElementById('jobPosterHiringManagerNameAccommodation').innerHTML = managerUser.user.name;
+
+       if (locale === "en_CA"){
+           var subject = "?subject=TalentCloud Accommodation Request for Job ID #" + jobData.id;
+       } else {
+           var subject = "?subject=Demande d'hébergement TalentCloud pour le numéro d'identification du travail " + jobData.id;
+       }
+       document.getElementById('jobPosterHiringManagerEmail').innerHTML = managerUser.user.email;
+       document.getElementById('jobPosterHiringManagerEmail').href = "mailto:" + managerUser.user.email + subject;
+    });
     //Load Hiring Manager Image
     var hiringManagerProfilePic = document.getElementById('jobPosterHiringManagerProfilePic');
     ProfilePicAPI.refreshProfilePic(jobData.manager_user_id, hiringManagerProfilePic);
     //Load Other Hiring Manager Data
     DataAPI.getManagerProfile(jobData.manager_user_id, function(response) {
-       var managerProfile = ManagerProfileAPI.parseManagerProfileResponse(response);
+       var locale = TalentCloudAPI.getLanguageFromCookie();
+       var managerProfile = ManagerProfileAPI.parseManagerProfileResponse(response, locale);
        document.getElementById('jobPosterHiringManagerTitle').innerHTML = managerProfile.position;
-       document.getElementById('jobPosterHiringManagerDepartment').innerHTML = managerProfile.department;
-       
-       /*Truncating Manager About Me*/ 
+
+
+       /*Truncating Manager About Me*/
         //Get rid of read more feature. User must click read profile to read all information.
        var len = 250;
        if (managerProfile.about_me.length > 0) {
@@ -535,9 +569,12 @@ JobPostAPI.populateJobPoster = function(jobData){
     } else {
         document.getElementById("jobPosterSalaryRangeValue").innerHTML = jobData.remuneration_range_low.toLocaleString('fr') + " $ ~ " + jobData.remuneration_range_high.toLocaleString('fr') + " $";
     }
-    document.getElementById("jobPosterTermValue").innerHTML = jobData.term_qty + " " + jobData.term_units;
-    document.getElementById("jobPosterJobLevelValue").innerHTML = jobData.job_min_level + " ~ " + jobData.job_max_level;
 
+    document.getElementById("jobPosterTermValue").innerHTML = jobData.term_qty + " " + jobData.term_units;
+    document.getElementById("jobPosterJobLevelValue").innerHTML = jobData.classification;
+    document.getElementById("jobPosterClearanceLevelValue").innerHTML = jobData.security_clearance;
+    document.getElementById("jobPosterLanguageValue").innerHTML = jobData.language_requirement;
+    document.getElementById("jobPosterHiringManagerDepartment").innerHTML = jobData.department;
 
     if (jobData.impact === "")
         jobData.impact = "N/A";

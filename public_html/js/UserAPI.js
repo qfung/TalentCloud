@@ -24,7 +24,7 @@ UserAPI.User = function () {
  * @param {XMLHttpRequest} httpResponse - returned from http request
  * @return {UserAPI.User}
  */
-UserAPI.parseUserResponse = function(httpResponse) {
+UserAPI.parseUserResponse = function (httpResponse) {
     var userJson = JSON.parse(httpResponse);
 
     var user = new UserAPI.User();
@@ -49,7 +49,7 @@ UserAPI.login = function () {
         loginErrors.classList.add('hidden');
     }
     var credentials = {};
-    if (UserAPI.hasSessionUser()){
+    if (UserAPI.hasSessionUser()) {
         credentials = UserAPI.getSessionUserAsJSON();
         if (UserAPI.hasAuthToken() && credentials !== null) {
             authToken = UserAPI.getAuthToken();
@@ -121,7 +121,7 @@ UserAPI.getUserById = function (credentials) {
     var user_id_from_token = JSON.parse(window.atob(jwt_elements[1]));
     //console.log(user_id_from_token);
 
-    var auth_url = UserAPI.baseURL + "/user/"+user_id_from_token.user_id ;
+    var auth_url = UserAPI.baseURL + "/user/" + user_id_from_token.user_id;
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
         // Check if the XMLHttpRequest object has a "withCredentials" property.
@@ -252,18 +252,18 @@ UserAPI.showRegisterConf = function (registerSuccess, confEmailSuccess) {
     /*
      var emailConfSuccessMessage = "<div>Confirmation email sent successfully. Please check your email and confirm your email address.</div>";
      var emailConfFailureMessage = "<div>Confirmation email was not sent successfully</div>";
-
+     
      if(confEmailSuccess){
      registrationFormEmailConfMessage.innerHTML = emailConfSuccessMessage;
      }else{
      registrationFormEmailConfMessage.innerHTML = emailConfFailureMessage;
      }*/
     /*
-    AccessibilityAPI.enableTabIndex("registerFormStatusTitleText");
-    AccessibilityAPI.enableTabIndex("registrationFormStatusMessage");
-    AccessibilityAPI.enableTabIndex("registrationFormStatusMessage");
-    AccessibilityAPI.enableTabIndex("registerFormStatusClose");
-    */
+     AccessibilityAPI.enableTabIndex("registerFormStatusTitleText");
+     AccessibilityAPI.enableTabIndex("registrationFormStatusMessage");
+     AccessibilityAPI.enableTabIndex("registrationFormStatusMessage");
+     AccessibilityAPI.enableTabIndex("registerFormStatusClose");
+     */
 
     AccessibilityAPI.preventModalEscape("registerStatusCloseBtn", "registerStatusLoginBtn");
     AccessibilityAPI.focusElement("registerStatusLoginBtn");
@@ -284,8 +284,8 @@ UserAPI.showRegisterConf = function (registerSuccess, confEmailSuccess) {
  */
 UserAPI.hideRegisterConf = function () {
     /*var stateInfo = {pageInfo: 'talent_cloud', pageTitle: 'Talent Cloud'};
-    document.title = stateInfo.pageTitle;
-    history.pushState(stateInfo, stateInfo.pageInfo, '#');*/
+     document.title = stateInfo.pageTitle;
+     history.pushState(stateInfo, stateInfo.pageInfo, '#');*/
 
     var registrationFormStatusMessage = document.getElementById("registrationStatusSuccessMessage");
     registrationFormStatusMessage.innerHTML = "";
@@ -340,7 +340,7 @@ UserAPI.loaded = function (response) {
     //console.log(response);
     var authJSON = JSON.parse(response);
     //console.log(authJSON);
-    if(!authJSON.failed){
+    if (!authJSON.failed) {
         var sessionUser = UserAPI.getSessionUserAsJSON();
         //console.log(sessionUser);
         if (sessionUser === null) {
@@ -353,13 +353,13 @@ UserAPI.loaded = function (response) {
             //var user_fname = document.getElementById("user_fname");
             //user_fname.innerHTML = authJSON.firstname;
 
-            var loggedIn = document.getElementById("loggedIn");
+            var loggedIn = document.getElementById("navigationLogoutLinkWrapper");
             loggedIn.classList.remove("hidden");
 
-            var loggedOut = document.getElementById("loggedOut");
+            var loggedOut = document.getElementById("navigationLoginLinkWrapper");
             loggedOut.classList.add("hidden");
 
-            var registerLink = document.getElementById("register");
+            var registerLink = document.getElementById("navigationRegisterLinkWrapper");
             registerLink.classList.add("hidden");
 
             var registerFormOverlay = document.getElementById("registerFormOverlay");
@@ -368,42 +368,43 @@ UserAPI.loaded = function (response) {
             var loginOverlay = document.getElementById("loginOverlay");
             loginOverlay.classList.add("hidden");
 
-            EventsAPI.hideBodyOverflow(false);
+            var dashBoardLink = document.getElementById("navigationDashboardLinkWrapper");
 
-            if (authJSON.user_role === TalentCloudAPI.roles.jobseeker) {
-                var dashBoardLink = document.getElementById("dashBoardLink");
-
-                if (dashBoardLink !== null) {
-                    var dashBoardLinkListItem = document.getElementById("dashBoardLinkListItem");
-                    dashBoardLink.classList.remove("hidden");
-                    dashBoardLinkListItem.setAttribute("aria-hidden", "false");
-                }
+            if (dashBoardLink !== null) {
+                var dashBoardLinkListItem = document.getElementById("navigationDashboardLinkWrapper");
+                dashBoardLink.classList.remove("hidden");
+                dashBoardLinkListItem.setAttribute("aria-hidden", "false");
             }
-
-                var myProfileLink = document.getElementById("profileLink");
-
-                if (myProfileLink !== null) {
-                    var profileLinkListItem = document.getElementById("profileLinkListItem");
-                    myProfileLink.classList.remove("hidden");
-                    profileLinkListItem.setAttribute("aria-hidden", "false");
-                    AccessibilityAPI.focusElement("profileLinkListItem");
-                }
-
-            if (authJSON.user_role === TalentCloudAPI.roles.manager || authJSON.user_role === TalentCloudAPI.roles.admin) {
-
-                var jobPostersLinkListItem = document.getElementById("jobPostersLinkListItem");
-                if (jobPostersLinkListItem){
-                    jobPostersLinkListItem.setAttribute("aria-hidden", "false");
-                }
-                var jobPostersLink = document.getElementById("jobPostersLink");
-                if (jobPostersLink){
-                    jobPostersLink.classList.remove("hidden");
-                }
-            }
-
-            EventsAPI.hideBodyOverflow(false);
-
         }
+
+        var myProfileLink = document.getElementById("navigationProfileLinkWrapper");
+
+        if (myProfileLink !== null) {
+            var profileLinkListItem = document.getElementById("navigationProfileLinkWrapper");
+            myProfileLink.classList.remove("hidden");
+            profileLinkListItem.setAttribute("aria-hidden", "false");
+            AccessibilityAPI.focusElement("navigationProfileLinkWrapper");
+        }
+        if (sessionUser.user_role === TalentCloudAPI.roles.admin || sessionUser.user_role === TalentCloudAPI.roles.manager) {
+            var jobPostersLinkListItem = document.getElementById("navigationPosterLinkWrapper");
+            if (jobPostersLinkListItem) {
+                jobPostersLinkListItem.setAttribute("aria-hidden", "false");
+            }
+            var jobPostersLink = document.getElementById("navigationPosterLinkWrapper");
+            if (jobPostersLink) {
+                var jobPostersLinkListItem = document.getElementById("navigationPosterLinkWrapper");
+                jobPostersLinkListItem.classList.remove("hidden");
+                jobPostersLinkListItem.setAttribute("aria-hidden", "false");
+            }
+            // var jobPostersLink = document.getElementById("jobPostersLink");
+            // if (jobPostersLink){
+            //     jobPostersLink.classList.remove("hidden");
+            // }
+        }
+
+        EventsAPI.hideBodyOverflow(false);
+
+    }
     } else {
         UserAPI.logout();
     }
@@ -482,8 +483,8 @@ UserAPI.failedLogin = function () {
  */
 UserAPI.cancelLogin = function () {
     /*var stateInfo = {pageInfo: 'talent_cloud', pageTitle: 'Talent Cloud'};
-    document.title = stateInfo.pageTitle;
-    history.pushState(stateInfo, stateInfo.pageInfo, '#');//*/
+     document.title = stateInfo.pageTitle;
+     history.pushState(stateInfo, stateInfo.pageInfo, '#');//*/
 
     var loginOverlay = document.getElementById("loginOverlay");
     loginOverlay.classList.add("hidden");
@@ -512,7 +513,7 @@ UserAPI.showRegisterForm = function () {
 
     EventsAPI.setFormFocus("switchToLogin");
     EventsAPI.hideBodyOverflow(true);
-    AccessibilityAPI.preventModalEscape("switchToLogin","registerFormRegisterBtn");
+    AccessibilityAPI.preventModalEscape("switchToLogin", "registerFormRegisterBtn");
     modalSize();
 };
 
@@ -522,8 +523,8 @@ UserAPI.showRegisterForm = function () {
  */
 UserAPI.hideRegisterForm = function () {
     /*var stateInfo = {pageInfo: 'talent_cloud', pageTitle: 'Talent Cloud'};
-    document.title = stateInfo.pageTitle;
-    history.pushState(stateInfo, stateInfo.pageInfo, '#');*/
+     document.title = stateInfo.pageTitle;
+     history.pushState(stateInfo, stateInfo.pageInfo, '#');*/
 
     var registerDialog = document.getElementById("registerFormOverlay");
     registerDialog.classList.add("hidden");
@@ -654,48 +655,48 @@ UserAPI.clearFormFields = function (formId) {
     }
 };
 
-UserAPI.updateUser = function(user, updateUserCallback) {
+UserAPI.updateUser = function (user, updateUserCallback) {
     var authToken = UserAPI.getAuthToken();
 
-    Utilities.debug?console.log("updating user"):null;
-    var updateUser_url = UserAPI.baseURL+"/user/update/";
-    var jsonData=JSON.stringify(user);
+    Utilities.debug ? console.log("updating user") : null;
+    var updateUser_url = UserAPI.baseURL + "/user/update/";
+    var jsonData = JSON.stringify(user);
 
     var updateUser_xhr = new XMLHttpRequest();
     if ("withCredentials" in updateUser_xhr) {
 
-      // Check if the XMLHttpRequest object has a "withCredentials" property.
-      // "withCredentials" only exists on XMLHTTPRequest2 objects.
-      updateUser_xhr.open("PUT", updateUser_url);
+        // Check if the XMLHttpRequest object has a "withCredentials" property.
+        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+        updateUser_xhr.open("PUT", updateUser_url);
 
     } else if (typeof XDomainRequest != "undefined") {
 
-      // Otherwise, check if XDomainRequest.
-      // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-      updateUser_xhr = new XDomainRequest();
-      updateUser_xhr.open("PUT", updateUser_url);
+        // Otherwise, check if XDomainRequest.
+        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+        updateUser_xhr = new XDomainRequest();
+        updateUser_xhr.open("PUT", updateUser_url);
 
     } else {
 
-      // Otherwise, CORS is not supported by the browser.
-      updateUser_xhr = null;
+        // Otherwise, CORS is not supported by the browser.
+        updateUser_xhr = null;
 
     }
 
-    updateUser_xhr.open('PUT',updateUser_url);
-    updateUser_xhr.setRequestHeader("Content-Type","application/json");
+    updateUser_xhr.open('PUT', updateUser_url);
+    updateUser_xhr.setRequestHeader("Content-Type", "application/json");
     updateUser_xhr.setRequestHeader("Authorization", "Bearer " + authToken);
 
     //updateUser_xhr.addEventListener("progress",DataAPI.updateToggleProgress,false);
     //updateUser_xhr.addEventListener("error",DataAPI.transferFailed,false);
     //updateUser_xhr.addEventListener("abort",DataAPI.transferAborted,false);
-    updateUser_xhr.addEventListener("load",function(){
+    updateUser_xhr.addEventListener("load", function () {
         var responseJson = JSON.parse(updateUser_xhr.responseText);
         if (responseJson.userUpdated && responseJson.updatedUser) {
             UserAPI.storeSessionUser(responseJson.updatedUser);
         }
         updateUserCallback(updateUser_xhr.response);
     }
-    ,false);
+    , false);
     updateUser_xhr.send(jsonData);
 }
