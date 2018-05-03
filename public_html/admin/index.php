@@ -6,39 +6,17 @@ and open the template in the editor .
 -->
 <?php
 date_default_timezone_set('America/Toronto');
-
-<body>
-    <!-- Include for Federal Identity Program (black banner) -->
-    <?php include '../inc/manager/header-fip.php'; ?>
-    <!-- Include for main navigation -->
-    <?php include '../inc/manager/header-nav.php'; ?>
-
-    <!-- BEGIN - Overlays (all should be children of this div) -->
-    <div id="overlays">
-        <!-- BEGIN - Includes for modal dialogs -->
-        <?php
-        include '../inc/manager/modal-registration.php';
-        include '../inc/manager/modal-login.php';
-        include '../inc/manager/modal-upload-photo.php';
-        include '../inc/manager/modal-yes-no.php';
-        include '../inc/manager/modal-update.php';
-        ?>
-        <!-- END - Modal dialogs -->
-    </div>
-    <!-- END - Overlays -->
-
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+require_once '../tc/config/auth.config.inc';
 require __DIR__ . '/../../vendor/autoload.php';
-
 use Jumbojett\OpenIDConnectClient;
-
 //get query string and parse into array
 $query_string = filter_input(INPUT_SERVER, 'QUERY_STRING', FILTER_SANITIZE_URL);
 parse_str($query_string, $querystring_array);
-
 //set initial nonce and state for login link url
 $nonce = md5(uniqid(rand(), TRUE));
 $state = md5(uniqid(rand(), TRUE));
-
 //if querystring is not empty
 if($query_string !== ""){
     //if login response code from querystring array is not null

@@ -40,13 +40,11 @@ if($query_string !== ""){
         if($_SESSION["accessToken"]){
             $oidc->setAccessToken($_SESSION["accessToken"]);
         }*/
-
         try{
             $oidc->authenticate();
         }catch(Jumbojett\OpenIDConnectClientException $e){
             echo($e->getMessage());
         }
-
         //set session variables for openid info
         if (isset($oidc)) {
             if ($oidc->getAccessToken() !== "NULL") {
@@ -59,7 +57,6 @@ if($query_string !== ""){
                 $_SESSION["expires_at"] = $expires_at;
             }
         }
-
         header("Refresh:0; url=\"".REDIRECT_URI."");
     }
 }else{
@@ -75,46 +72,39 @@ if($query_string !== ""){
 </head>
 <body>
     <script type="text/javascript">
-         <?php
-         if (isset($oidc)) {
-             if($_SESSION["accessToken"] !== null){
-                 echo("var accessToken = '".$_SESSION["accessToken"]."';");
-                 echo("UserAPI.storeOpenIDAccessToken(accessToken);");
-             }
-
-             if($_SESSION["idToken"] !== null){
-                 echo("var idToken = '".$_SESSION["idToken"]."';");
-                 echo("UserAPI.storeOpenIDToken(idToken);");
-             }
-
-             if($_SESSION["refreshToken"] !== null){
-                 echo("var refreshToken = '".$_SESSION["refreshToken"]."';");
-                 echo("UserAPI.storeOpenIDRefreshToken(refreshToken);");
-             }
-
-             if($_SESSION["expires_in"] !== null){
-                 echo("var expires_in = '".$_SESSION["expires_in"]."';");
-                 echo("UserAPI.storeOpenIDExpiry(expires_in);");
-             }
-
-             if($_SESSION["expires_at"] !== null){
-                 echo("var expires_at = '".$_SESSION["expires_at"]."';");
-                 echo("UserAPI.storeSessionObject(\"expires_at\",expires_at, false);");
-             }
-
-             $userInfo = $oidc->requestUserInfo();
-
-             if($userInfo !== null){
-                 echo("UserAPI.storeSessionUser(".json_encode($userInfo).");");
-                 echo("UserAPI.login();");
-             }
-         }else{
-             echo("UserAPI.login();");
-         }
-         //var isExistingUser = UserAPI.authenticate(UserAPI.getSessionUserAsJSON());
-         ?>
-     </script>
-
+        <?php
+        if (isset($oidc)) {
+            if($_SESSION["accessToken"] !== null){
+                echo("var accessToken = '".$_SESSION["accessToken"]."';");
+                echo("UserAPI.storeOpenIDAccessToken(accessToken);");
+            }
+            if($_SESSION["idToken"] !== null){
+                echo("var idToken = '".$_SESSION["idToken"]."';");
+                echo("UserAPI.storeOpenIDToken(idToken);");
+            }
+            if($_SESSION["refreshToken"] !== null){
+                echo("var refreshToken = '".$_SESSION["refreshToken"]."';");
+                echo("UserAPI.storeOpenIDRefreshToken(refreshToken);");
+            }
+            if($_SESSION["expires_in"] !== null){
+                echo("var expires_in = '".$_SESSION["expires_in"]."';");
+                echo("UserAPI.storeOpenIDExpiry(expires_in);");
+            }
+            if($_SESSION["expires_at"] !== null){
+                echo("var expires_at = '".$_SESSION["expires_at"]."';");
+                echo("UserAPI.storeSessionObject(\"expires_at\",expires_at, false);");
+            }
+            $userInfo = $oidc->requestUserInfo();
+            if($userInfo !== null){
+                echo("UserAPI.storeSessionUser(".json_encode($userInfo).");");
+                echo("UserAPI.login();");
+            }
+        }else{
+            echo("UserAPI.login();");
+        }
+        //var isExistingUser = UserAPI.authenticate(UserAPI.getSessionUserAsJSON());
+        ?>
+    </script>
     <?php // Include for Federal Identity Program (black banner) ?>
     <?php include 'inc/applicant/header-fip.php';?>
     <!-- Include for main navigation -->
