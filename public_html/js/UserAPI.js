@@ -404,7 +404,6 @@ UserAPI.loaded = function (response) {
 
         EventsAPI.hideBodyOverflow(false);
 
-    }
     } else {
         UserAPI.logout();
     }
