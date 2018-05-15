@@ -100,7 +100,9 @@
 }
 
 .application-progress__label {
+    display: inline-block;
     font-family: $font-hk;
     font-size: 16px;
     font-weight: 800;
+    margin: 0;
 }

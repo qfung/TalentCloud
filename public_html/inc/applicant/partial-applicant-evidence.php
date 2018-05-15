@@ -104,10 +104,10 @@
 
                 <p class="applicant-evidence__skill-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper sodales sem, sit amet rutrum arcu facilisis sed. Mauris consectetur id odio a congue. Ut faucibus tincidunt nulla fermentum sagittis. Vivamus posuere odio non sem maximus, in tristique lacus posuere.</p>
 
-                <p class="applicant-evidence__assessment-warning">
+                <!-- <p class="applicant-evidence__assessment-warning">
                     <i class="fa fa-clipboard"></i>
                     This criteria will be assessed during the interview process.
-                </p>
+                </p> -->
 
                 <hr class="applicant-evidence__content-divider">
 

@@ -544,7 +544,7 @@ Utilities.setEvidenceUiEventListeners = function (e) {
 
             // Listen for a keydown.
 
-            evidenceStartFocus[i].addEventListener("keydown", evidenceFirstTargetKeydown);
+            // evidenceStartFocus[i].addEventListener("keydown", evidenceFirstTargetKeydown);
         }
 
         // The following code sends the user to the next tab in the event that they reach the end of the collapsed version of the pane.
@@ -554,7 +554,7 @@ Utilities.setEvidenceUiEventListeners = function (e) {
         for (var i = 0; i < evidenceEarlyEndFocus.length; i++) {
 
             // Listen for a keydown.
-            evidenceEarlyEndFocus[i].addEventListener("keydown", evidenceEarlyLastTargetKeydown);
+            // evidenceEarlyEndFocus[i].addEventListener("keydown", evidenceEarlyLastTargetKeydown);
         }
 
         // The following code sends the user to the next tab in the event that they reach the end of the expanded version of the pane.
@@ -564,7 +564,7 @@ Utilities.setEvidenceUiEventListeners = function (e) {
         for (var i = 0; i < evidenceEndFocus.length; i++) {
 
             // Listen for a keydown.
-            evidenceEndFocus[i].addEventListener("keydown", evidenceLastTargetKeydown);
+            // evidenceEndFocus[i].addEventListener("keydown", evidenceLastTargetKeydown);
         }
 
     } else {
@@ -592,6 +592,7 @@ function evidenceMenuItemClick(e) {
 
     // Prevent the default action.
     e.preventDefault();
+    
     // Enter the loop for desktop tab menu items and remove the active class from all of them.
     for (var i = 0; i < desktopEvidenceTriggers.length; i++) {
         desktopEvidenceTriggers[i].classList.remove("active");
@@ -615,12 +616,11 @@ function evidenceMenuItemClick(e) {
         var panel = evidencePanes[i];
         if (panel.getAttribute("data-evidence-target") == triggerData) {
             panel.classList.add("active");
-            panel.querySelector(".applicant-evidence__first-target").focus();
+            // panel.querySelector(".applicant-evidence__first-target").focus();
         }
     }
 
-}
-;
+};
 
 function evidenceMenuItemKeyup(e) {
 
@@ -635,89 +635,7 @@ function evidenceMenuItemKeyup(e) {
 
     }
 
-}
-;
-
-function evidenceFirstTargetKeydown(e) {
-
-    // Check to see if the Shift key is being pressed in tandom with the Tab key (9).
-    if (e.shiftKey && e.keyCode == 9) {
-
-        // Prevent the default action.
-        e.preventDefault();
-        // Set a variable that gets the element's parent's data attribute.
-        var triggerData = this.closest(".applicant-evidence__accordion-wrapper").getAttribute("data-evidence-target");
-
-        // Set a variable that gets all desktop tab items.
-        var desktopEvidenceTriggers = document.querySelectorAll(".applicant-evidence__desktop-menu-item");
-
-        // Enter the loop for desktop tab items.
-        for (var i = 0; i < desktopEvidenceTriggers.length; i++) {
-
-            // Check if the trigger's data attribute is the same as the pane, and if so, give the trigger focus.
-            if (desktopEvidenceTriggers[i].getAttribute("data-evidence-trigger") == triggerData) {
-                desktopEvidenceTriggers[i].focus();
-            }
-
-        }
-
-    }
-}
-;
-
-function evidenceEarlyLastTargetKeydown(e) {
-    if (this.closest(".form__wrapper").nextElementSibling.classList.contains("active")) {
-        // Continue on your way.
-    } else {
-
-        if (!e.shiftKey && e.keyCode == 9) {
-
-            var triggerData = this.closest(".applicant-evidence__accordion-wrapper").getAttribute("data-evidence-target");
-            var desktopEvidenceTriggers = document.querySelectorAll(".applicant-evidence__desktop-menu-item");
-
-            for (var i = 0; i < desktopEvidenceTriggers.length; i++) {
-                var trigger = desktopEvidenceTriggers[i];
-                if (trigger.getAttribute("data-evidence-trigger") == triggerData) {
-
-                    if (trigger.nextElementSibling) {
-                        e.preventDefault();
-                        trigger.nextElementSibling.focus();
-                    }
-
-                }
-
-            }
-
-        }
-
-    }
-}
-;
-
-function evidenceLastTargetKeydown(e) {
-
-    if (!e.shiftKey && e.keyCode == 9) {
-
-        var triggerData = this.closest(".applicant-evidence__accordion-wrapper").getAttribute("data-evidence-target");
-        var desktopEvidenceTriggers = document.querySelectorAll(".applicant-evidence__desktop-menu-item");
-
-        for (var i = 0; i < desktopEvidenceTriggers.length; i++) {
-            var trigger = desktopEvidenceTriggers[i];
-            if (trigger.getAttribute("data-evidence-trigger") == triggerData) {
-
-                if (trigger.nextElementSibling) {
-                    e.preventDefault();
-                    trigger.nextElementSibling.focus();
-                }
-
-            }
-
-        }
-
-    }
-
-}
-;
+};
 
 function evidenceAccordionTriggerClick(e) {
 
@@ -751,8 +669,7 @@ function evidenceAccordionTriggerClick(e) {
 
     }
 
-}
-;
+};
 
 Utilities.addWindowEventListener("load", Utilities.setEvidenceUiEventListeners);
 Utilities.addWindowEventListener("resize", Utilities.setEvidenceUiEventListeners);
@@ -838,8 +755,7 @@ function evidencePreviewAccordionClick(e) {
 
     }
 
-}
-;
+};
 
 function evidencePreviewMenuItemClick(e) {
     // Set variables for the desktop menu items and the associated evidence panes.
@@ -880,8 +796,7 @@ function evidencePreviewMenuItemClick(e) {
 
         }
     }
-}
-;
+};
 
 function evidencePreviewMenuItemKeyup(e) {
     // Cancels the default action.
@@ -892,8 +807,7 @@ function evidencePreviewMenuItemKeyup(e) {
         // Triggers a click, thus activating the click event listener.
         this.click();
     }
-}
-;
+};
 
 function evidencePreviewLinkKeydown(e) {
     // Check to see if the Shift key is being pressed in tandom with the Tab key (9).
@@ -933,8 +847,7 @@ function evidencePreviewLinkKeydown(e) {
             }
         }
     }
-}
-;
+};
 
 Utilities.addWindowEventListener("load", Utilities.setEvidencePreviewUiEventListeners);
 Utilities.addWindowEventListener("resize", Utilities.setEvidencePreviewUiEventListeners);

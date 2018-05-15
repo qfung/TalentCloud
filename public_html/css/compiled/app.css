@@ -5525,9 +5525,11 @@ nav {
   transform: translate(-50%, -50%); }
 
 .application-progress__label {
+  display: inline-block;
   font-family: HKGrotesk, sans-serif;
   font-size: 16px;
-  font-weight: 800; }
+  font-weight: 800;
+  margin: 0; }
 
 /* =============================================================================
 
