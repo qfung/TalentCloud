@@ -27,7 +27,7 @@
 
         <div class="application-button__wrapper">
 
-            <button class="button--yellow" value="View" onclick="JobApplicationAPI.saveJobApplication(JobApplicationAPI.showNextApplicationSection(document.getElementById('jobApplicationJobPosterId').value));">
+            <button class="button--yellow" value="View" onclick="JobApplicationAPI.saveJobApplication(function(){JobApplicationAPI.showNextApplicationSection(document.getElementById('jobApplicationJobPosterId').value);});">
                 Save and continue
             </button>
 
