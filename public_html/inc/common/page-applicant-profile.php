@@ -8,9 +8,9 @@
                 <div class="applicant-profile__photo" id="myProfilePic"></div>
             </div>
 
-            <h3 class="applicant-profile__name" id="updateProfileApplicantProfileFormNameLabelSpan"></h3>
+            <h3 class="applicant-profile__name" id="updateProfileApplicantProfileFormNameLabelSpan">John Donut</h3>
 
-            <p class="applicant-profile__tagline" id="updateProfileApplicantProfileFormTaglineLabelSpan">Default tag line!</p>
+            <p class="applicant-profile__tagline" id="updateProfileApplicantProfileFormTaglineLabelSpan">Tagline!</p>
 
             <ul class="applicant-profile__social-wrapper" id="profileSocialMediaLinks">
                 <li class="hidden" id="profileTwitterLinkWrapper">

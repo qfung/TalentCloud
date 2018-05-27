@@ -1,24 +1,5 @@
 /* END SORTED STYLES */
 
-#jobPosterFormWrapper{
-    margin-top: 10em;
-}
-
-.form-icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: top;
-}
-
-.searchWrapper{
-    float:left;
-}
-
-#search{
-    margin-top: 0.2em;
-    vertical-align: bottom;
-}
-
 .alphaList{
     list-style: none;
     list-style-type: none;
@@ -33,18 +14,6 @@
 
 .alpha{
     border-top: 1px solid #ccc;
-}
-
-.steppedFormLink{
-    text-align: center !important;
-    text-decoration:none !important;
-    color:#fff !important;
-}
-
-.steppedFormLinkActive{
-    text-align: center !important;
-    text-decoration:none !important;
-    color:#fff !important;
 }
 
 .contactCard{
@@ -104,16 +73,6 @@
     vertical-align: bottom;
 }
 
-.favouriteImageWrapper{
-    position:absolute;
-    top:0.5em;
-    right:0.5em;
-}
-
-.jobPosterFavouriteImg{
-    width:1.5em;
-}
-
 .editImage{
     width:3.5em;
     border-radius: 50%;
@@ -139,34 +98,4 @@
 .stepNavigation{
     position: absolute;
     /* absolute: 0; */
-}
-
-.stepGroup,.jobSeekerFormStepGroup {
-    position: relative;
-    width:100%;
-    min-height: 100%;
-    bottom: 0;
-    background-color: #fff;
-}
-
-
-
-.reallyShortInput{
-    width:3em;
-}
-
-.shortInput{
-    width:10em;
-}
-
-.mediumInput{
-    width:20em;
-}
-
-.longInput{
-    width:40em;
-}
-
-.validationMessage{
-    color:#ff0000;
 }

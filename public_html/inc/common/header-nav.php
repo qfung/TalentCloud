@@ -155,9 +155,9 @@
 
     <div id="h1">
         <?php if (strpos($url,'admin') !== false) : ?>
-            <h1 class="visuallyHidden">Talent Cloud - Admin Portal</h1>
+            <h1 class="sr-only">Talent Cloud - Admin Portal</h1>
         <?php else : ?>
-            <h1 class="visuallyHidden">Talent Cloud - Applicant Portal</h1>
+            <h1 class="sr-only">Talent Cloud - Applicant Portal</h1>
         <?php endif; ?>
     </div>
 

@@ -42,15 +42,6 @@
     transition: opacity 1s ease-in-out;
 }
 
-.visuallyHidden {
-    position:absolute;
-    left:-10000px;
-    top:auto;
-    width:1px;
-    height:1px;
-    overflow:hidden;
-}
-
 .half-width {
     width:50%;
 
@@ -95,6 +86,22 @@
 
 .centered {
     text-align: center;
+}
+
+.reallyShortInput{
+    width:3em;
+}
+
+.shortInput{
+    width:10em;
+}
+
+.mediumInput{
+    width:20em;
+}
+
+.longInput{
+    width:40em;
 }
 
 /* CONTAINERS / OVERLAYS */
