@@ -5,14 +5,6 @@
 
 /* LEGACY CODE ============================================================== */
 
-#loginForm,#registerForm{
-    // margin-left: 0px !important;
-    // margin-right: 0px !important;
-}
-
-#loginErrors{
-    white-space: pre-wrap;
-}
 
 /* FORMS */
 
@@ -35,35 +27,19 @@
 .form-textbox{
     width:95%;
 }
-form label{
-    font-size: 16px;
-    line-height:20px;
-}
-input[type=text],input[type=password],select{
-    padding:0.5em;
-}
-input[type=button],input[type=submit],input[type=reset]{
-    padding:0.25em;
-    height: 30px;
-}
 
 /* ============================================================================= */
 
-.form__wrapper {
-
-    >*:last-child,
-    >.box:last-child >*:last-child {
-        margin-bottom: 0;
-    }
-
+// Elements
+fieldset{
+    padding: 0 2rem 0 0;
+    border: 0;
+    margin: 0;
 }
 
-.form__label {
-    display: block;
-    font-size: 1.2rem;
-    //font-weight: 700;
-    line-height: 1;
-    margin: 1rem 0;
+legend{
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
 input[type=text][class*="form__input--"],
@@ -79,7 +55,7 @@ input[type=url][class*="form__input--"] {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.2;
-    margin: 0 0 2rem 0;
+    margin: .5rem 0 2rem 0;
     padding: 1rem 2rem 1rem 1rem;
     width: 100%;
 
@@ -87,6 +63,23 @@ input[type=url][class*="form__input--"] {
 
     }
 
+}
+
+// Classes
+.form__wrapper {
+
+    >*:last-child,
+    >.box:last-child >*:last-child {
+        margin-bottom: 0;
+    }
+
+}
+
+.form__label {
+    display: block;
+    font-size: 1.6rem;
+    //font-weight: 700;
+    line-height: 1;
 }
 
 .form__select-wrapper {
@@ -117,6 +110,7 @@ input[type=url][class*="form__input--"] {
     line-height: 1.2;
     padding: 1rem 2rem 1rem 1rem;
     width: 100%;
+    margin-top: .5rem;
 
     &:focus {
         border: 1px solid $palette-blue;
@@ -132,7 +126,8 @@ input[type=url][class*="form__input--"] {
     font-size: 16px;
     line-height: 1.5;
     margin: 0 0 2rem 0;
-    min-height: 15rem;
+    //min-height: 15rem;
+    //float: left;
     padding: 1rem;
     width: 100%;
 
@@ -205,4 +200,13 @@ input[type=url][class*="form__input--"] {
     font-weight: 400;
     padding: 1rem;
     text-align: center;
+}
+
+// Required form fields
+.fa-asterisk{
+    color: $palette-red;
+}
+
+.fa-level-down-alt {
+    color: $palette-green;
 }

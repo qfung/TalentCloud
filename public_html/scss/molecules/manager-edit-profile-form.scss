@@ -16,13 +16,11 @@
 }
 
 .manager-edit-profile__required-copy-wrapper {
-    margin: 0 0 2rem 0;
-
+    margin: 0 0 3rem 0;
+    font-size: 16px;
+    
     span {
-        color: rgba(193, 0, 0, 1);
-        font-size: 16px;
     }
-
 }
 
 .manager-edit-profile__form {
@@ -87,16 +85,4 @@
 
     }
 
-}
-
-.stepGroup_createEditProfile a{
-    color:#fff;
-}
-
-.stepGroup_createEditProfile .tab-current{
-    background: $palette-blue--semidark;
-}
-
-.stepGroup_createEditProfile .tab-current a{
-    color:white;
 }
