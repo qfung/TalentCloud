@@ -426,7 +426,7 @@ Utilities.removeListInputItem = function (e) {
             // Clone Initial Node
             var clone = templateItem.cloneNode(true);
             clone.classList.remove("repeater__template");
-            clone.classList.remove("repeater__item");
+            clone.classList.add("repeater__item");
             clone.setAttribute("data-value", cloneValue);
 
         }
@@ -435,7 +435,7 @@ Utilities.removeListInputItem = function (e) {
             // Clone Initial Node
             var clone = templateItem.cloneNode(true);
             clone.classList.remove("repeater__template");
-            clone.classList.remove("repeater__item");
+            clone.classList.add("repeater__item");
             clone.setAttribute("data-value", 1);
 
         }
