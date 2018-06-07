@@ -1,0 +1,342 @@
+/* =============================================================================
+
+    Authored by: Talent Cloud
+
+    Applicant: My Applications - Index Item
+
+============================================================================= */
+
+.application-index__section-title {
+	color: $palette-blue;
+	font-size: 30px;
+	font-weight: 900;
+	margin: 4rem 0 2rem;
+
+	&:first-of-type {
+		margin-top: 0;
+	}
+
+}
+
+/* Null States ============================================================== */
+
+[class*="application-index__section-null-state--"] {
+	background: lighten($palette-grey--light, 10%);
+	border: 1px solid $palette-grey--dark;
+	border-radius: 3px;
+	padding: 6rem 2rem 5rem;
+	text-align: center;
+
+	@media #{$p-tablet} {
+		padding: 6rem 15rem 5rem;
+	}
+
+	&[class*="progress"] {
+
+	}
+
+	&[class*="expired"] {
+		padding: 6rem 2rem 4rem;
+
+		@media #{$p-tablet} {
+		padding: 6rem 15rem 4rem;
+	}
+
+	}
+
+	&[class*="submitted"] {
+
+	}
+
+}
+
+	.application-index__section-null-state-title {
+		font-size: 20px;
+		font-weight: 900;
+		margin: 0 0 2rem 0;
+	}
+
+	.application-index__section-null-state-copy {
+		font-size: 16px;
+		margin: 2rem 0;
+	}
+
+/* ========================================================================== */
+
+.application-index__item {
+	background: white;
+	border-radius: 3px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+	margin: 0 0 4rem 0;
+	overflow: hidden;
+
+	.box {
+		position: relative;
+	}
+
+	&.active {
+
+		.application-index__button--edit {
+			display: inline-block;
+		}
+
+		.application-index__button--view {
+			display: none;
+		}
+
+		.application-index__button--trash {
+			display: inline-block;
+		}
+
+		.application-index__icon--submitted {
+			display: none;
+		}
+
+	}
+
+	&.expired {
+
+		.application-index__button--edit {
+			display: none;
+		}
+
+		.application-index__button--view {
+			display: inline-block;
+		}
+
+		.application-index__button--trash {
+			display: inline-block;
+		}
+
+		.application-index__icon--submitted {
+			display: none;
+		}
+
+	}
+
+	&.submitted {
+
+		.application-index__button--edit {
+			display: none;
+		}
+
+		.application-index__button--view {
+			display: inline-block;
+		}
+
+		.application-index__button--trash {
+			display: none;
+		}
+
+		.application-index__icon--submitted {
+			display: inline-block;
+		}
+	}
+
+}
+
+	.application-index__item-header {
+		background: rgba(0, 0, 0, .8);
+		padding: 2rem;
+		text-align: center;
+
+		@media #{$p-tablet} {
+			text-align: left;
+		}
+
+	}
+
+		.application-index__item-title {
+			color: white;
+			font-size: 25px;
+			font-weight: 700;
+			margin: 0 0 1rem 0;
+			width: 100%;
+		}
+
+		.application-index__item-department {
+			color: $palette-blue;
+			display: block;
+			font-size: 16px;
+			font-weight: 400;
+			margin: 0 0 1rem 0;
+
+			@media #{$p-tablet} {
+				margin: 0;
+			}
+
+		}
+
+		.application-index__item-close-date-wrapper {
+
+			@media #{$p-tablet} {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+			}
+
+		}
+
+			.application-index__item-close-date-label {
+				color: $white;
+				font-size: 16px;
+			}
+
+			.application-index__item-close-date-number {
+				color: $palette-pink;
+				font-size: 16px;
+			}
+
+			.application-index__item-close-date-days {
+				color: $palette-pink;
+				font-size: 16px;
+			}
+
+		.application-index__item-closed {
+			color: $palette-pink;
+			font-size: 16px;
+
+			@media #{$p-tablet} {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+			}
+
+		}
+
+	.application-index__item-body {
+
+		>.flex-grid >.box >.box {
+			padding: 2rem;
+		}
+
+	}
+
+		[class*="application-index__item-label--"] {
+			color: $black;
+			display: block;
+			font-size: 16px;
+			font-weight: 700;
+			margin: 0 0 .5rem 0;
+
+			&[class*="edit"] {
+
+			}
+
+			&[class*="post"] {
+
+			}
+
+		}
+
+		[class*="application-index__link--"] {
+			appearance: none;
+			background: none;
+			border: none;
+			color: $palette-blue;
+			font-size: 16px;
+			line-height: 1.4375;
+			padding: 0;
+			text-decoration: underline;
+			transition: color .2s ease;
+
+			&[class*="job-poster"] {
+
+			}
+
+			&[class*="profile"] {
+
+			}
+
+			&:hover {
+				color: $palette-blue--dark;
+				transition: color .2s ease;
+			}
+
+		}
+
+		.application-index__item-edit-date {
+			color: $black;
+			font-size: 16px;
+		}
+
+		.application-index__item-manager-photo {
+			background-color: grey;
+			background-position: center;
+			background-size: cover;
+			border-radius: 100%;
+			display: inline-block;
+			height: 5rem;
+			margin: 0 1rem 0 0;
+			width: 5rem;
+			vertical-align: middle;
+		}
+
+		.application-index__item-manager {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+			.application-index__item-manager-name {
+				color: $black;
+				display: block;
+				font-size: 16px;
+				font-weight: 700;
+				margin: 0 0 .5rem 0;
+			}
+
+		.application-index__action-wrapper {
+			text-align: center;
+
+			@media #{$p-tablet} {
+				text-align: right;
+			}
+
+		}
+
+			[class*="application-index__button--"] {
+				margin: 0 0 2rem 0;
+				min-width: 20rem;
+				width: 100%;
+
+				@media #{$p-tablet} {
+					margin: 0 1rem 0 0;
+					width: auto;
+				}
+
+				&[class*="edit"] {
+					display: none;
+				}
+
+				&[class*="view"] {
+
+				}
+
+				&[class*="trash"] {
+					background: none;
+					border-radius: 0;
+					color: $palette-grey;
+					display: inline-block;
+					font-size: 2rem;
+					min-width: 0px;
+					margin: 0;
+					padding: 1rem;
+					transition: color .2s ease;
+					width: auto;
+
+					&:hover {
+						color: red;
+						transition: color .2s ease;
+					}
+
+				}
+
+			}
+
+			.application-index__icon--submitted {
+				color: $palette-green;
+				display: inline-block;
+				font-size: 2rem;
+				margin: 0;
+				padding: 1rem;
+			}
