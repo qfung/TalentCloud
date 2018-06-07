@@ -8,95 +8,10 @@
 
 var FormValidationAPI = {};
 
-/**
- *
- * @param {string} emailToValidate
- * @returns {Boolean}
- */
-FormValidationAPI.validateEmail = function(emailToValidate){
-    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regex.test(emailToValidate);
-};
-
-/**
- *
- * @param {string} password1
- * @param {string} password2
- * @returns {Boolean}
- */
-FormValidationAPI.passwordMatch = function(password1, password2){
-    return password1 === password2;
-};
-
-FormValidationAPI.validateLoginForm = function(email, password) {
-    var credentials = {};
-    var valid = true;
-
-    FormValidationAPI.setValidationErrorProperties(false, "login_email_error", "login_email_error_msg");
-
-    //console.log(FormValidationAPI.validateEmail(email));
-    if(FormValidationAPI.fieldNotEmpty(email)){
-        if(!FormValidationAPI.validateEmail(email)) {
-            valid = false;
-            FormValidationAPI.setValidationErrorProperties(true, "login_email_error", "login_email_error_msg", "Error: Invalid email address.");
-        }
-    }else{
-        FormValidationAPI.setValidationErrorProperties(true, "login_email_error", "login_email_error_msg", "Error: Please enter your mail address.");
-    }
-
-    FormValidationAPI.setValidationErrorProperties(false, "login_password_error", "login_password_error_msg");
-    if(!FormValidationAPI.fieldNotEmpty(password)){
-        valid = false;
-        FormValidationAPI.setValidationErrorProperties(true, "login_password_error", "login_password_error_msg", "Error: Please enter your password.");
-    }
-
-    if(valid) {
-        credentials.email = encodeURIComponent(email);
-        credentials.password = encodeURIComponent(password);
-        return credentials;
-    }
-};
-
-FormValidationAPI.validateRegisterForm = function(email, email_confirm, password, confirm_password) {
-    var valid = true;
-
-    /*FormValidationAPI.setValidationErrorProperties(false, "register_name_error", "register_name_error_msg");
-    if(name < 2 || !name) {
-        valid = false;
-        FormValidationAPI.setValidationErrorProperties(true, "register_name_error", "register_name_error_msg", "Error: Invalid name.");
-    }*/
-
-    FormValidationAPI.setValidationErrorProperties(false, "register_email_confirm_error", "register_email_confirm_error_msg");
-    if(email !== email_confirm) {
-        valid = false;
-        FormValidationAPI.setValidationErrorProperties(true, "register_email_confirm_error", "register_email_confirm_error_msg", "Error: Emails do not match.");
-    }
-
-    FormValidationAPI.setValidationErrorProperties(false, "register_email_error", "register_email_error_msg");
-    if((FormValidationAPI.validateEmail(email)).length === 0 || !FormValidationAPI.validateEmail(email)) {
-        valid = false;
-        FormValidationAPI.setValidationErrorProperties(true, "register_email_error", "register_email_error_msg", "Error: Invalid email.");
-    }
-
-    FormValidationAPI.setValidationErrorProperties(false, "register_password_confirm_error", "register_password_confirm_error_msg");
-    if(!FormValidationAPI.passwordMatch(password, confirm_password)) {
-        valid = false;
-        FormValidationAPI.setValidationErrorProperties(true, "register_password_confirm_error", "register_password_confirm_error_msg", "Error: Passwords do not match.");
-    }
-
-    FormValidationAPI.setValidationErrorProperties(false, "register_password_error", "register_password_error_msg");
-    if(password.length < 6 || !password) {
-        valid = false;
-        //FormValidationAPI.setValidationErrorProperties(true, "register_password_confirm_error", "register_password_confirm_error_msg", "Error: Invalid password.");
-        FormValidationAPI.setValidationErrorProperties(true, "register_password_error", "register_password_error_msg", "Error: Password must be at least 6 characters.");
-    }
-
-    return valid;
-};
 
 FormValidationAPI.validateUpdateProfileBasicInfo = function(twitter, linkedin) {
     var valid = true;
-        
+
     if(FormValidationAPI.fieldNotEmpty(twitter) && !FormValidationAPI.validateTwitterUsername(twitter)) {
         FormValidationAPI.setValidationErrorProperties(true, "profileEditTwitterError", "profileEditTwitterErrorMsg", "Error: Invalid Twitter Username");
         FormValidationAPI.focusIfFirstInvalidField(valid, "profileEditTwitter")

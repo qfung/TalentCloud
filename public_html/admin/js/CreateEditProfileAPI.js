@@ -72,10 +72,12 @@ CreateEditProfileAPI.localizeCreateEditProfile = function (siteContent) {
     try {
         LookupAPI.populateDropdown("department", "createEditProfile_department");
 
-        document.getElementById("createEditProfile_branch_label").innerHTML = siteContent.branch;
-        document.getElementById("createEditProfile_branch_fr_label").innerHTML = siteContent.branch;
-        document.getElementById("createEditProfile_division_label").innerHTML = siteContent.division;
-        document.getElementById("createEditProfile_division_fr_label").innerHTML = siteContent.division;
+        // DELETE?
+        //
+        //document.getElementById("createEditProfile_branch_label").innerHTML = siteContent.branch;
+        //document.getElementById("createEditProfile_branch_fr_label").innerHTML = siteContent.branch;
+        //document.getElementById("createEditProfile_division_label").innerHTML = siteContent.division;
+        //document.getElementById("createEditProfile_division_fr_label").innerHTML = siteContent.division;
     } catch (e) {
         (console.error || console.log).call(console, e.stack || e);
     }

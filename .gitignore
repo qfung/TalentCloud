@@ -61,3 +61,4 @@ smart.lock
 temp_* 
 Thumbs.db 
 thumbs.db
+public_html/\.tags

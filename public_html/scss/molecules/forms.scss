@@ -1,6 +1,6 @@
 /* =============================================================================
-    Authored by: Talent Cloud
-    Form Styles
+Authored by: Talent Cloud
+Form Styles
 ============================================================================= */
 
 /* LEGACY CODE ============================================================== */
@@ -30,7 +30,23 @@
 
 /* ============================================================================= */
 
-// Elements
+// Labels that look like placeholders
+form {
+
+    max-width: 100%;
+    
+  > div {
+    position: relative;
+
+    > label {
+      opacity: 0.3;
+      position: absolute;
+      top: 22px;
+      left: 20px;
+    }
+  }
+}
+
 fieldset{
     padding: 0 2rem 0 0;
     border: 0;
@@ -59,13 +75,23 @@ input[type=url][class*="form__input--"] {
     padding: 1rem 2rem 1rem 1rem;
     width: 100%;
 
+    &:valid {
+        background-image: url(/images/checkmark.png);
+        background-size: 4rem;
+        background-repeat: no-repeat;
+        background-position: right;
+    }
+
+    &:focus {
+        border: 1px solid $palette-blue;
+    }
+
     &[class*="text"] {
 
     }
 
 }
 
-// Classes
 .form__wrapper {
 
     >*:last-child,
@@ -102,6 +128,8 @@ input[type=url][class*="form__input--"] {
 
 .form__select {
     appearance: none;
+    // above wasn't working for me in Chrome? - Grant
+    -webkit-appearance: none;
     background: lighten($palette-grey--light, 10%);
     border: none;
     color: $black;
@@ -111,9 +139,17 @@ input[type=url][class*="form__input--"] {
     padding: 1rem 2rem 1rem 1rem;
     width: 100%;
     margin-top: .5rem;
+    height: 4rem;
 
     &:focus {
         border: 1px solid $palette-blue;
+    }
+
+    &:valid {
+        background-image: url(/images/checkmark.png);
+        background-size: 4rem;
+        background-repeat: no-repeat;
+        background-position: right;
     }
 
 }
@@ -126,13 +162,20 @@ input[type=url][class*="form__input--"] {
     font-size: 16px;
     line-height: 1.5;
     margin: 0 0 2rem 0;
-    //min-height: 15rem;
+    min-height: 12.5rem;
     //float: left;
     padding: 1rem;
     width: 100%;
 
     &:focus {
         border: 1px solid $palette-blue;
+    }
+
+    &:valid {
+        background-image: url(/images/checkmark.png);
+        background-size: 4rem;
+        background-repeat: no-repeat;
+        background-position: top right;
     }
 
 }
@@ -200,13 +243,4 @@ input[type=url][class*="form__input--"] {
     font-weight: 400;
     padding: 1rem;
     text-align: center;
-}
-
-// Required form fields
-.fa-asterisk{
-    color: $palette-red;
-}
-
-.fa-level-down-alt {
-    color: $palette-green;
 }
